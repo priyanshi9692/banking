@@ -9,9 +9,9 @@ In views we will write frontend like HTML5/Javascript/CSS3.
 Open your terminal
 Run the following commands
 
-~ git clone https://github.com/rcampbell95/CMPE-202-Project.git
-~ cd CMPE-202-Project
-~ git pull origin master
+1. git clone https://github.com/rcampbell95/CMPE-202-Project.git
+2. cd CMPE-202-Project
+3. git pull origin master
 
 # Database Connection 
 1. db_config contains the mysql connection string.
