@@ -19,8 +19,8 @@ Run the following commands
 3. Update this string in db_config file {host: "localhost",user: "root",password: "*******",database:"banking"}
 
 # Running the App
-~ npm i
-~ node app.js or nodemon app.js 
+1. npm i
+2. node app.js or nodemon app.js 
 
 # Go to browser and paste localhost:5000
 
