@@ -23,5 +23,9 @@ Meeting Summary
 * Extra Credit
     * Will do Web/Mobile UI and deploy to AWS EC2
     * Priyanshi has experience in deploying to AWS
+* Future goals
+    * Will be designing Banking_System Schema.
+    * Will design software component architecture before we will meet next time. 
+    
 
 
