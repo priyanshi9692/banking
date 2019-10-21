@@ -6,6 +6,9 @@ Weekly Scrum Report - 10/20/19
 1. Priyanshi
 
 2. Wei
+    1. Partially completed building API Schema for adding banking accout, including successful output and error handling.
+    2. Will continue completing the schema by adding input and possible errors list.
+    3. Will need to do some research on RDS and Node.js.
 
 3. Roberto 
     1. This week, I worked on initial project setup such as establishing journal procedure and creating the project board. 
