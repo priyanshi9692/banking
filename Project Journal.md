@@ -4,6 +4,9 @@
 Weekly Scrum Report - 10/20/19
 
 1. Priyanshi
+    1. Initial set up for Frontend(HTML5, CSS3, JavaScript).
+    2. I have set up the backend to write all APIs in NodeJS.
+    3. Set up Demo API to GET customer info.
 
 2. Wei
     1. Partially completed building API Schema for adding banking accout, including successful output and error handling.
