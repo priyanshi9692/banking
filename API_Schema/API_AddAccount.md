@@ -1,5 +1,5 @@
 ```JSON
-input:
+###input:
 {
 	
 	[//]: # ( "$schema": "http://json-schema.org/draft-07/schema#", 
@@ -88,14 +88,14 @@ Successful Output:
           				"type": "string"
         			}
         		}
-        		@*},
-        		"required": [ "product_code", "account_attribute_id","name","type","value" ]*@
+        		<!--},
+        		"required": [ "product_code", "account_attribute_id","name","type","value" ] -->
       		},
       		"minItems": 1,
       		"uniqueItems": true
   		}
   	},
-  	"required": [ "productId", "productName", "price" ]
+  	<!--"required": [ "productId", "productName", "price" ] -->
 }
 
 Error Handling:
@@ -116,7 +116,11 @@ Error Handling:
   	} 
 }
 ```    	
-    	
+Possible Errors:
+-AA-10001:Invalid json format.
+-AA-20001:User not found.
+-AA-30001:Bank not found.
+-AA-50000:Unknown Error.     	
     	
     	
     	
