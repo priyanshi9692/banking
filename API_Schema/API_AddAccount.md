@@ -1,5 +1,5 @@
+**input:**
 ```JSON
-###input:
 {
 	
 	[//]: # ( "$schema": "http://json-schema.org/draft-07/schema#", 
@@ -19,12 +19,13 @@
 	},
   	"required": [ "userId", "branch_id" ]
 }
+```
 
-
-Successful Output:
+**Successful Output:**
+```JSON
 {
 	<!--"$schema": "http://json-schema.org/draft-07/schema#",
-	"$id": "http://example.com/product.schema.json",*@ -->
+	"$id": "http://example.com/product.schema.json", -->
 	"title": "Account",
 	"description": "output API for adding a banking account",
 	"type": "object",
@@ -97,8 +98,10 @@ Successful Output:
   	},
   	<!--"required": [ "productId", "productName", "price" ] -->
 }
+```
 
-Error Handling:
+**Error Handling:**
+```JSON
 {
 	
 	[//]: # ( "$schema": "http://json-schema.org/draft-07/schema#", 
@@ -116,11 +119,11 @@ Error Handling:
   	} 
 }
 ```    	
-Possible Errors:
--AA-10001:Invalid json format.
--AA-20001:User not found.
--AA-30001:Bank not found.
--AA-50000:Unknown Error.     	
+**Possible Errors:**
++ AA-10001:Invalid json format.
++ AA-20001:User not found.
++ AA-30001:Bank not found.
++ AA-50000:Unknown Error.     	
     	
     	
     	
