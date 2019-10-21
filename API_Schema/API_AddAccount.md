@@ -1,30 +1,30 @@
 ```JSON
-input
-
-(TBD)
-
-Error Handling:
+input:
 {
-	@*"$schema": "http://json-schema.org/draft-07/schema#",
-	"$id": "http://example.com/product.schema.json",**@
+	
+	[//]: # ( "$schema": "http://json-schema.org/draft-07/schema#", 
+	"$id": "http://example.com/product.schema.json",)
 	"title": "Account",
-	"description": "error handling for adding a banking account",
+	"description": "input API for adding a banking account",
 	"type": "object",
-	"properties": {  	
-  		"error_code":{
-  			"type": "string"
-  		}
-  		"error_desc":{
-  			"type": "string"
-  		}
-  	} 
+	"properties": { 
+		"userId": {
+			"description": "The unique identifier for a user",
+			"type": "integer"
+    	}, 
+    	"branch_id":{
+    		"description": "The unique identifier for a bank branch",
+			"type": "integer"
+    	}
+	},
+  	"required": [ "userId", "branch_id" ]
 }
 
 
 Successful Output:
 {
-	@*"$schema": "http://json-schema.org/draft-07/schema#",
-	"$id": "http://example.com/product.schema.json",*@
+	<!--"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "http://example.com/product.schema.json",*@ -->
 	"title": "Account",
 	"description": "output API for adding a banking account",
 	"type": "object",
@@ -96,6 +96,24 @@ Successful Output:
   		}
   	},
   	"required": [ "productId", "productName", "price" ]
+}
+
+Error Handling:
+{
+	
+	[//]: # ( "$schema": "http://json-schema.org/draft-07/schema#", 
+	"$id": "http://example.com/product.schema.json",)
+	"title": "Account",
+	"description": "error handling for adding a banking account",
+	"type": "object",
+	"properties": {  	
+  		"error_code":{
+  			"type": "string"
+  		}
+  		"error_desc":{
+  			"type": "string"
+  		}
+  	} 
 }
 ```    	
     	
