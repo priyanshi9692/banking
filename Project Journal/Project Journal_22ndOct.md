@@ -2,7 +2,7 @@
 
 ## Weekly Scrum Report - 10/22/19
 
-1. Priyanshi
+* Priyanshi
   1. Created GET APIs to test the application with dummy data.
   2. Prepared Schema for view and search functionality.
 
