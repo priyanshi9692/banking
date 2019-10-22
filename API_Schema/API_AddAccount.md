@@ -2,22 +2,26 @@
 ```JSON
 {
 	
-	[//]: # ( "$schema": "http://json-schema.org/draft-07/schema#", 
-	"$id": "http://example.com/product.schema.json",)
+	<!-- "$schema": "http://json-schema.org/draft-07/schema#", 
+	"$id": "http://example.com/product.schema.json",-->
 	"title": "Account",
 	"description": "input API for adding a banking account",
 	"type": "object",
 	"properties": { 
-		"userId": {
-			"description": "The unique identifier for a user",
+		"customerId": {
+			"description": "The unique identifier for a customer",
 			"type": "integer"
     	}, 
     	"branch_id":{
     		"description": "The unique identifier for a bank branch",
 			"type": "integer"
+    	},
+    	"acct_type":{
+    		"description": "Saving or checking etc.",
+			"type": "string"
     	}
 	},
-  	"required": [ "userId", "branch_id" ]
+  	"required": [ "customerId", "branch_id" , acct_type ]
 }
 ```
 
@@ -30,12 +34,12 @@
 	"description": "output API for adding a banking account",
 	"type": "object",
 	"properties": {
-		"userId": {
-			"description": "The unique identifier for a user",
+		"customerId": {
+			"description": "The unique identifier for a customer",
 			"type": "integer"
     	},
-    	"type":{
-      		"description": "Product code",
+    	"acct_type":{
+      		"description": "Account type",
 			"type": "string"
     	},
     	"balance":{
@@ -77,9 +81,6 @@
           				"type": "string"
         			},
         			"account_id": {
-          				"type": "string"
-        			},
-        			"name": {
           				"type": "string"
         			},
         			"open_date": {

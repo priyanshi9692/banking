@@ -2,7 +2,8 @@ postSignup: (req, res) => {
     console.log(req.body);
     var newCustomer = {};
     //???
-    console.log(req.body.firstname);
+    //console.log(req.body.firstname);
+    newCustomer.branch_id = req.body.branch_id;
     newCustomer.firstname = req.body.firstname;
     newCustomer.lastname = req.body.lastname;
     newCustomer.bd = req.body.bd;
