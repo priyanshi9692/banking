@@ -73,24 +73,21 @@
       		"items": {
         		"type": "object"
         		"properties": {
-        			"product_code": {
+        			"account_type": {
           				"type": "string"
         			},
-        			"account_attribute_id": {
+        			"account_id": {
           				"type": "string"
         			},
         			"name": {
           				"type": "string"
         			},
-        			"type": {
-          				"type": "string"
-        			},
-        			"value": {
+        			"open_date": {
           				"type": "string"
         			}
         		}
         		<!--},
-        		"required": [ "product_code", "account_attribute_id","name","type","value" ] -->
+        		"required": [ "account_type", "account_id","name","open_date" ] -->
       		},
       		"minItems": 1,
       		"uniqueItems": true
@@ -120,10 +117,10 @@
 }
 ```    	
 **Possible Errors:**
-+ AA-10001:Invalid json format.
-+ AA-20001:User not found.
-+ AA-30001:Bank not found.
-+ AA-50000:Unknown Error.     	
++ AA-10001: Invalid json format.
++ AA-20001: User not found.
++ AA-30001: Bank not found.
++ AA-50000: Unknown Error.     	
     	
     	
     	
