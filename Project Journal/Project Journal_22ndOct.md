@@ -6,9 +6,9 @@
   1. Created GET APIs to test the application with dummy data.
   2. Prepared Schema for view and search functionality.
 
-2. Wei
+* Wei
 
-3. Roberto
+* Roberto
 
 ## Meeting Summary
 
