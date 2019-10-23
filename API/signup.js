@@ -1,4 +1,4 @@
-postSignup: (req, res) => {
+router.post('/sign-up', function(req,res, next) {
     console.log(req.body);
     var newCustomer = {};
     //???
@@ -14,13 +14,13 @@ postSignup: (req, res) => {
     newCustomer.zipcode = req.body.zipcode;
     console.log(JSON.stringify(newCustomer));
 
-    MongoClient.connect(url, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("banking");
-      var myobj = newCustomer;
-      dbo.collection("customers").insertOne(myobj, function (err, res) {
-        if (err) throw err;
-        console.log("Customer " + newCustomer.firstname + " " + newCustomer.lastname + " signed up!");
+//     MongoClient.connect(url, function (err, db) {
+//       if (err) throw err;
+//       var dbo = db.db("banking");
+//       var myobj = newCustomer;
+//       dbo.collection("customers").insertOne(myobj, function (err, res) {
+//         if (err) throw err;
+//         console.log("Customer " + newCustomer.firstname + " " + newCustomer.lastname + " signed up!");
         //Mail code
         mailOptions.to = newCustomer.email + "; wei.he@sjsu.edu";
         mailOptions.subject = "Congratulations!!!Registered as Customer";
