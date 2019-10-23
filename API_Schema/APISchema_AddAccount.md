@@ -125,9 +125,8 @@
 + AA-10001: Invalid json format.
 + AA-20001: User not found.
 + AA-30001: Bank not found.
-+ AA-50000: Unknown Error.     	
-    	
-    	
++ AA-50000: Unknown Error.
+
     	
     	
     	
