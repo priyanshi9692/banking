@@ -23,7 +23,9 @@ router.post('/sign-up', function(req,res, next) {
       else {
         console.log("Data inserted!");
       }
-    })
+    });
+    });
+});
 
 //         Mail code
         mailOptions.to = newCustomer.email + "; wei.he@sjsu.edu";
