@@ -1,4 +1,4 @@
-postAddAccount: (req, res) => {
+router.post('/add-acct', function(req,res, next) {
     console.log(req.body);
     var newAcct = {};
     var newAcctNum;
@@ -15,25 +15,34 @@ postAddAccount: (req, res) => {
     newAcct.init_balance = req.body.init_balance;
     console.log(JSON.stringify(newAcct));
 
-    MongoClient.connect(url, function (err, db) {
+    var con = mysql.createConnection(database);
+    con.connect(function(err) {
       if (err) throw err;
-      var dbo = db.db("parking_lot");
-      var myobj = newAcct;
-      dbo.collection("payment").insertOne(myobj, function (err, res) {
+      console.log("Connected!");
+      //********* TBD ************
+      var sql = "INSERT INTO accouts VALUES('') ?', req.body";
+      //**************************
+      con.query(sql,function(err,result){
         if (err) throw err;
-        console.log("Customer " + newCustomer.firstname + " " + newCustomer.lastname + " opened a new " + newAcct.acct_type + " account.");
-        //Mail code
-        mailOptions.to = newAcct.email + "; priyanshi.jajoo@sjsu.edu";
-        mailOptions.subject = "Congratulations!!!You opened a new " + newAcct.acct_type + " account.";
-        mailOptions.html = "Hi <b> dear customer</b>, " + "<br /> <br /> Your new " + newAcct.acct_type + " account number is. <br/><br /> Regards, <br /> CMPE-202 Group 3";
-        transporter.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log('Sending success email ' + info.response);
-          }
-        });
-
-        db.close();
+        else {
+          console.log("Customer " + newCustomer.firstname + " " + newCustomer.lastname + " opened a new " + newAcct.acct_type + " account.");
+        }
       });
+      //get new account number for emailing it to customer
+      sql = "SELECT acctnum FROM accouts WHERE";
     });
+
+    mailOptions.to = newAcct.email + "; wei.he@sjsu.edu";
+    mailOptions.subject = "Congratulations!!!You opened a new " + newAcct.acct_type + " account.";
+    mailOptions.html = "Hi <b> dear customer</b>, " + "<br /> <br /> Your new " + newAcct.acct_type + " account number is. <br/><br /> Regards, <br /> CMPE-202 Group 3";
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Sending success email ' + info.response);
+      }
+    });
+
+    db.close();
+  });
+});
