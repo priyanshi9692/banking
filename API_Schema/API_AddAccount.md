@@ -19,7 +19,11 @@
     	"acct_type":{
     		"description": "Saving or checking etc.",
 			"type": "string"
-    	}
+    	},
+    	"init_balance":{
+    		"description": "initial balance with any amount",
+			"type": "number"
+    	}    	
 	},
   	"required": [ "customerId", "branch_id" , acct_type ]
 }
