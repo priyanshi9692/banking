@@ -17,17 +17,17 @@ router.post('/sign-up', function(req,res, next) {
 
     var con = mysql.createConnection(database);
     con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-    //********* TBD ************
-    var sql = "INSERT INTO customer SET ?', req.body";
-    //**************************
-    con.query(sql,function(err,result){
       if (err) throw err;
-      else {
-        console.log("Customer " + newCustomer.firstname + " " + newCustomer.lastname + " signed up!");
-      }
-    });
+      console.log("Connected!");
+      //********* TBD ************
+      var sql = "INSERT INTO customer VALUES('') ?', req.body";
+      //**************************
+      con.query(sql,function(err,result){
+        if (err) throw err;
+        else {
+          console.log("Customer " + newCustomer.firstname + " " + newCustomer.lastname + " signed up!");
+        }
+      });
     });
 });
 
