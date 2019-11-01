@@ -7,6 +7,11 @@
   2. Prepared Schema for view and search functionality.
 
 * Wei
+  1. Completed API schema for add account.
+  2. Added API schema for sign up.
+  3. Updated addAcct.js.
+  4. Create SQL query for table account.
+  5. Paused committing due to midterm.
 
 * Roberto
 
