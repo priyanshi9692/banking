@@ -14,6 +14,10 @@
   5. Paused committing due to midterm.
 
 * Roberto
+  1. Created production database on AWS RDS
+  2. Created account table on production database
+  3. Added initial tasks on project boards
+  4. TODO -- Add user stories to product backlog for sprint estimation
 
 ## Meeting Summary
 
