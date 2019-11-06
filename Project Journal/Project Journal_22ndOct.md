@@ -26,7 +26,7 @@
   2. Robert will modify Google Task Sheet
   3. Team decided on communication as XP value
   4. Team decided to make one sign up/ sign in page for add new account or operate existing account. 
-  4. Sprint planning meeting set for ------
+  4. Sprint planning meeting set for 10/31/19.
 * Backend
   1. Created Node APIs for GET calls.
   2. Decided to create Node APIs for POST/DELETE calls.
