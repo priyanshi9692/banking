@@ -6,6 +6,7 @@
   1. Created POST APIs to sign-up account with dummy data.
   2. Discussed the work flow with the team.
   3. Creating GET APIs for view and Search Operation using My SQL queries with dummy data.
+  4. TODO-- will be creating EC2 instance to deploy sign-up front-end UI.
 
 * Wei
 
