@@ -7,6 +7,7 @@
   2. Discussed the work flow with the team.
   3. Creating GET APIs for view and Search Operation using My SQL queries with dummy data.
   4. TODO-- will be creating EC2 instance to deploy sign-up front-end UI.
+  5. Created EC2 instance and application is running on http://ec2-18-217-42-138.us-east-2.compute.amazonaws.com:5000/.
 
 * Wei
 
