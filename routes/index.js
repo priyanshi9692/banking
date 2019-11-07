@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
     })
 
   });
-  res.render('index', { title: 'Banking System' });
+  res.render('index');
 });
 
 
