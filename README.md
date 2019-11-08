@@ -1,4 +1,7 @@
 # CMPE-202-Project
+## Development stack diagram
+![Development_stack](https://www.lucidchart.com/documents/edit/dd571072-b6fe-4b2f-8dc2-14d2df8488d6/0_0?beaconFlowId=940A21D4681D3A0B)
+
 # Backend
 In routes folder we will write backend APIs, look at the example (routes/index.js).
 
