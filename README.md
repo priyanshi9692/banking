@@ -1,6 +1,6 @@
 # CMPE-202-Project
 ## Development stack diagram
-![Development_stack](https://github.com/rcampbell95/CMPE-202-Project/blob/master/Development%20Stack%20.jpeg)
+![Development_stack](https://github.com/rcampbell95/CMPE-202-Project/blob/master/Development%20Stack%20%20(1).jpeg)
 
 # Backend
 In routes folder we will write backend APIs, look at the example (routes/index.js).
