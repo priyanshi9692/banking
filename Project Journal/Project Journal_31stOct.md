@@ -10,7 +10,8 @@
   5. Created EC2 instance and application is running on http://ec2-18-217-42-138.us-east-2.compute.amazonaws.com:5000/.
 
 * Wei
-
+  1. Sketched out GUI of adding account according to Sign up;
+  2. Will continue to implement GUI for adding account;
 
 * Roberto
 
