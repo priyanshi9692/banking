@@ -7,7 +7,8 @@
   2. TODO: 
 
 * Wei
-
+  1. Continued with GUI design for adding account
+  2. Update APIs.
 
 * Roberto
 
