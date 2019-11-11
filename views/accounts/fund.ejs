@@ -8,6 +8,20 @@
   <style>
     * {box-sizing: border-box}
 
+/* Full-width input fields */
+  input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
 
 hr {
   border: 1px solid #f1f1f1;
@@ -30,7 +44,7 @@ button:hover {
   opacity:1;
 }
 
-/* Float cancel and signup buttons and add an equal width */
+/* Float submit button and add an equal width */
 /* .cancelbtn, .signupbtn {
   float: left;
   width: 50%;
@@ -48,30 +62,23 @@ button:hover {
   display: table;
 }
 
-/* Change styles for next button on extra small screens */
+/* Change styles for submit button on extra small screens */
 @media screen and (max-width: 300px) {
-  .nextbtn {
+  .submitbtn {
     width: 100%;
   }
 }
 </style>
   <body>
-    <form action="open-account" method="POST"  style="border:1px solid #ccc">
+    <form action="fund_acct" method="POST"  style="border:1px solid #ccc">
       <div class="container">
-        <h1>Open an Account</h1>
+        <h1>Open an Account - Fund Your Account</h1>
         <hr>
-
-        <h3><b>Account Type</b></h3>
-        <label><input type="radio"  name="accttype" id="checking" value="Checking" checked>Checking </br></br></label>
-        <label><input type="radio"  name="accttype" id="saving" value="Saving">Saving </label>
-        
-        <h3><b>Are you our customer?</b></h3>
-        <label><input type="radio"  name="iscustomer" id="customer" value="existing" checked>Yes. Sign in for a faster, prefilled application. </br></br></label>
-        <label><input type="radio"  name="iscustomer" id="notcustomer" value="new">No. Sign up. </label>
-        
+        <label for="initbalance"><b>Initial Balance</b></label>
+        <input type="text" placeholder= "initbalance" name="initbalance" required>
     
         <div class="clearfix">
-          <button type="button" class="nextbtn">Next</button>
+          <button type="submit" class="submitbtn">Submit</button>
         </div>
       </div>
     </form>
