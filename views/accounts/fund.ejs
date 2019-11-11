@@ -8,20 +8,24 @@
   <style>
     * {box-sizing: border-box}
 
-/* Full-width input fields */
-  input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
+    /* Full-width input fields */
+    input[type=text], 
+    input[type=number], 
+    input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
 
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
+    input[type=text]:focus, 
+    input[type=number]:focus, 
+    input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
 
 hr {
   border: 1px solid #f1f1f1;
@@ -75,7 +79,7 @@ button:hover {
         <h1>Open an Account - Fund Your Account</h1>
         <hr>
         <label for="initbalance"><b>Initial Balance</b></label>
-        <input type="text" placeholder= "initbalance" name="initbalance" required>
+        $<input type="number" placeholder= "Initial Balance" name="initbalance" required value="0.00">
     
         <div class="clearfix">
           <button type="submit" class="submitbtn">Submit</button>
