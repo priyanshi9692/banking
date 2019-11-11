@@ -58,18 +58,18 @@ button:hover {
   <body>
     <!-- <h1>CMPE-202</h1>
     <p>Open account</p> -->
-    <h1>Hello</h1>
     <form action="open-account" method="POST"  style="border:1px solid #ccc">
       <div class="container">
-        <h1>Open an account</h1>
+        <h1>Open an Account</h1>
         <hr>
 
         <h3><b>Account Type</b></h3>
-
-        <label><input type="radio"  name="accttype" id="checking" value="Checking" checked>Checking </label>
-
+        <label><input type="radio"  name="accttype" id="checking" value="Checking" checked>Checking </br></br></label>
         <label><input type="radio"  name="accttype" id="saving" value="Saving">Saving </label>
         
+        <h3><b>Are you our customer?</b></h3>
+        <label><input type="radio"  name="iscustomer" id="customer" value="existing" checked>Yes. Sign in for a faster, prefilled application. </br></br></label>
+        <label><input type="radio"  name="iscustomer" id="notcustomer" value="new">No. Sign up. </label>
         
     
         <div class="clearfix">
