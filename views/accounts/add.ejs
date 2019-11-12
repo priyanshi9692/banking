@@ -54,10 +54,12 @@ button:hover {
     width: 100%;
   }
 }
+
+
 </style>
   <body>
-    <form action="open-account" method="POST"  style="border:1px solid #ccc">
-      <div class="container">
+    <form method="POST"  style="border:1px solid #ccc">
+      <div class="container" id="panel1">
         <h1>Open an Account</h1>
         <hr>
 
@@ -71,12 +73,27 @@ button:hover {
         
     
         <div class="clearfix">
-          <button type="button" class="nextbtn">Next</button>
+          <button type="button" class="nextbtn" onclick="switchPanel(document.getElementById('panel1'), document.getElementById('panel2'))">Next</button>
+        </div>
+          
+      </div>
+
+      <div id="panel2" style="display: none;">
+        <h1>Open an Account - Fund Your Account</h1>
+        <hr>
+        <label for="initbalance"><b>Initial Balance</b></label>
+        <lable></br></br>$<input type="number" placeholder= "Initial Balance" name="initbalance" required value="0.00"></lable>
+    
+        <div class="clearfix">
+          <button type="submit" class="submitbtn">Submit</button>
         </div>
       </div>
     </form>
   </body>
   <script>
-    
-    </script>
+    function switchPanel(prev, next) {
+      prev.style.display = "none";
+      next.style.display = "";
+    }
+  </script>
 </html>

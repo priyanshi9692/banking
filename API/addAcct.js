@@ -1,4 +1,4 @@
-router.post('/add-acct', function(req,res, next) {
+router.post('/add', function(req,res, next) {
     console.log(req.body);
     var newAcct = {};
     var newAcctNum;
@@ -45,4 +45,4 @@ router.post('/add-acct', function(req,res, next) {
 
     db.close();
   });
-});
+
