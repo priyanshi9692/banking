@@ -1,6 +1,8 @@
 # CMPE-202-Project
 ## Development stack diagram
-![Development_stack](https://github.com/rcampbell95/CMPE-202-Project/blob/master/Development%20Stack%20%20(1).jpeg)
+![Development_stack](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/Diagrams/Development%20Stack%20.jpeg)
+## Architecture Diagram
+![Architecture Diagram](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/Diagrams/Banking%20System_%20Architecture%20Diagram.jpeg)
 
 # Backend
 In routes folder we will write backend APIs, look at the example (routes/index.js).
