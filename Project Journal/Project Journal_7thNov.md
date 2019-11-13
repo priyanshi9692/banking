@@ -4,7 +4,8 @@
 
 * Priyanshi
   1. Uploaded Development Stack diagram.
-  2. TODO: 
+  2. Updated signup UI and created sign-in UI with login credentials(username and password).
+  3. TODO: Creating Architecture diagram, component diagram, deployment diagram. 
 
 * Wei
   1. Continued with GUI design for adding account
