@@ -31,6 +31,7 @@ router.post('/', function(req,res, next) {
     newCustomer.firstname = req.body.firstname;
     newCustomer.lastname = req.body.lastname;
     newCustomer.bdate = req.body.bdate;
+    newCustomer.username=req.body.username;
     newCustomer.ssn = req.body.ssn;
     newCustomer.email = req.body.email;
     newCustomer.password = req.body.password;
