@@ -22,6 +22,15 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+router.get('/home', function(req, res, next) {
+  if (req.session && req.session.user) {
+    console.log(req.session.user);
+  res.render('userhome',{
+    user:req.session.user.name
+  });
+  }
+});
+
 
 router.get('/customers-info', function(req,res,next){
   var con= mysql.createConnection(database);
