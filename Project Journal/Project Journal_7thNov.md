@@ -12,6 +12,7 @@
   2. Update APIs.
 
 * Roberto
+  1. Updated Project Sprint Task Sheet
 
 * Animesh
 
