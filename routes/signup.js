@@ -25,6 +25,7 @@ router.get('/', function(req, res, next) {
     });
   });
 
+
 router.post('/', function(req,res, next) {
     console.log("Input from the user:",req.body);
     var newCustomer = {};
@@ -39,7 +40,17 @@ router.post('/', function(req,res, next) {
     newCustomer.city = req.body.city;
     newCustomer.state = req.body.state;
     newCustomer.zipcode = req.body.zipcode;
-  
+    newCustomer.account_type=req.body.account_type;
+    if(req.body.account_type=="savings"){
+        newCustomer.account= "sav00000" + Math.floor(Math.random() * 100);
+      }
+    else{
+        newCustomer.account="chk00000"+Math.floor(Math.random()*100);
+      }
+    
+
+    
+
     var con = mysql.createConnection(database);
     con.connect(function(err) {
     if (err) throw err;
@@ -49,8 +60,15 @@ router.post('/', function(req,res, next) {
       if (err) throw err;
       else {
         console.log("New Customer Data inserted successfully");
+        var client={};
+        client.name = req.body.firstname;
+        client.fullname = req.body.firstname +" " + req.body.lastname;
+        client.username=req.body.username;
+        client.email=req.body.email;
+        console.log(client);
+        req.session.user = client;
       }
-      res.send("Successfully signed up!!");
+      res.redirect('/dashboard');
     });
   });
   });

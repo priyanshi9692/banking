@@ -1,1 +1,9 @@
 db/
+/node_modules
+/package-lock.json
+/.vscode/
+/coverage
+/.nyc_output/
+*.zip
+worksheet.js
+*.log
