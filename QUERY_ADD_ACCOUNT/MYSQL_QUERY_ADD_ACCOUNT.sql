@@ -6,10 +6,17 @@ CREATE TABLE account (
   	balance_amt float NOT NULL,
   	currency varchar(45) NOT NULL,
   	open_date datetime NOT NULL,
+  	if_deleted VARCHAR(15),
   	PRIMARY KEY (acc_num),
 	FOREIGN KEY fk_customer_acct(customer_id)
 	REFERENCES customer(id)
 );
 
+-- Add account
 INSERT INTO account (customer_id, routing_num, acc_type, balance_amt, currency, open_date)
 VALUES (4, '00001', 'Checking', 200.00, "$",  current_timestamp());
+
+-- Delete account
+UPDATE account
+SET if_deleted = 'Deleted'
+WHERE acc_num = 0000000005;
