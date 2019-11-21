@@ -3,9 +3,8 @@
 ## Weekly Scrum Report - 11/07/19
 
 * Priyanshi
-  1. Updated Architecture diagram.
-  2. Web UI designed for Add Account functionality.
-  3. TODO: Component diagram, deployment diagram. 
+  1. Updated Deployment Diagram and Component Diagram.
+  2. TODO: implement view and Search functionality.
   
 
 * Wei
@@ -22,8 +21,9 @@
   1. Created Google Task Sheet.
   2. Created Development stack diagram.
   3. Created Architecture Diagram.
-  4. Team decided to implement add account and add new account (for existing customer) functionality. 
-  5. Sprint planning meeting set for 11/21/19.
+  4. Created Component and Deployment Diagram.
+  5. Team decided to implement view and search functionality.
+  6. Sprint planning meeting set for 11/28/19.
 * Backend
   1. Created Node APIs for GET/POST calls.
   2. Decided to create Node APIs for DELETE calls.
