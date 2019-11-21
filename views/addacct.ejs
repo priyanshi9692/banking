@@ -75,10 +75,12 @@ button:hover {
         <div class="clearfix">
           <button type="button" class="nextbtn" onclick="switchPanel(document.getElementById('panel1'), document.getElementById('panel2'))">Next</button>
         </div>
-          
+        <!-- <div class="clearfix">
+          <button type="button" class="nextbtn" onclick="postData();">Post</button>
+        </div> -->
       </div>
 
-      <div id="panel2" style="display: none;">
+      <div id="panel2" class="container" style="display: none;">
         <h1>Open an Account - Fund Your Account</h1>
         <hr>
         <label for="initbalance"><b>Initial Balance</b></label>
@@ -92,8 +94,22 @@ button:hover {
   </body>
   <script>
     function switchPanel(prev, next) {
-      prev.style.display = "none";
-      next.style.display = "";
+      if (document.getElementById('customer').checked == true) {
+        prev.style.display = "none";
+        next.style.display = "";
+      } else {
+        
+      }
+      
+    }
+
+    function postData() {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/accounts/postsignup?accttype=checking", true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({
+          customer_id: "123"
+      }));
     }
   </script>
 </html>
