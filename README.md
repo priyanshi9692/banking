@@ -4,9 +4,9 @@
 ## Architecture Diagram
 ![Architecture Diagram](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/Diagrams/Banking%20System_%20Architecture%20Diagram.jpeg)
 ## Component Design Diagram
-![Component Design Diagram]()
+![Component Design Diagram](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/Diagrams/Banking%20System_%20Component%20design.jpeg)
 ## Deployment Diagram
-![Deployment Diagram]()
+![Deployment Diagram](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/Diagrams/Banking%20System_%20Deployment%20Diagram.jpeg)
 
 # Backend
 In routes folder we will write backend APIs, look at the example (routes/index.js).
