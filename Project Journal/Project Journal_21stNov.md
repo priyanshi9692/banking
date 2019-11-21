@@ -1,6 +1,6 @@
 # Project Scrum Journal
 
-## Weekly Scrum Report - 11/07/19
+## Weekly Scrum Report - 11/21/19
 
 * Priyanshi
   1. Updated Deployment Diagram and Component Diagram.
