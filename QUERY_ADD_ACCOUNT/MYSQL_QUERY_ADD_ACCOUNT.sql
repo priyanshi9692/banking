@@ -1,8 +1,8 @@
 CREATE TABLE account (
-  	acc_num int(10) ZEROFILL NOT NULL AUTO_INCREMENT,
+  	acct_num int(10) ZEROFILL NOT NULL AUTO_INCREMENT,
   	customer_id int NOT NULL,
   	routing_num varchar(255) NOT NULL,
-  	acc_type varchar(45) NOT NULL,
+  	acct_type varchar(45) NOT NULL,
   	balance_amt float NOT NULL,
   	currency varchar(45) NOT NULL,
   	open_date datetime NOT NULL,

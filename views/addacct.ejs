@@ -87,28 +87,45 @@ button:hover {
         <lable></br></br>$<input type="number" placeholder= "Initial Balance" name="initbalance" required value="0.00"></lable>
     
         <div class="clearfix">
-          <button type="submit" class="submitbtn">Submit</button>
+          <!-- <button type="submit" class="submitbtn">Submit</button> -->
+          <button type="button" class="nextbtn" onclick="newAccount();">Submit</button>
         </div>
       </div>
     </form>
   </body>
   <script>
     function switchPanel(prev, next) {
+      // if: User IS an existing customer, then go to fundacct
+      // else: User is NOT our customer yet, then go to sign up
       if (document.getElementById('customer').checked == true) {
-        prev.style.display = "none";
-        next.style.display = "";
+        postCustomerData()
+        prev.style.display = "none"
+        next.style.display = ""
       } else {
-        
-      }
-      
+        window.location.href = "/signup?accttype=" + document.getElementsByName('accttype').value
+      }   
     }
 
-    function postData() {
+    function postCustomerData() {
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "/accounts/postsignup?accttype=checking", true);
+      xhr.open("POST", "/postsignup", true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify({
-          customer_id: "123"
+          "customer_id": "4",
+          "routing_num": "00001",
+          "acc_type": document.getElementsByName('accttype').value
+      }));
+    }
+
+    function newAccount() {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/addacct", true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({
+          "customer_id": "4",
+          "routing_num": "00001",
+          "acc_type": document.getElementsByName('accttype').value,
+          "init_balance": document.getElementsByName('initbalance').value
       }));
     }
   </script>
