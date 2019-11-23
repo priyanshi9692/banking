@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var database = require("../db/db_config").DB
+var nodemailer = require('nodemailer');
 
 router.get('/addacct', function(req, res, next) {
   res.render("addacct", { title: 'Banking System - Add Account' })
@@ -45,6 +47,14 @@ router.post('/addacct', function(req, res, next) {
             }
         });
     });
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'wei.he@sjsu.edu',
+          pass: 'Leonardo020513'
+        }
+      });
 
     mailOptions.to = newAcct.email + "; wei.he@sjsu.edu";
     mailOptions.subject = "Congratulations!!!You opened a new " + newAcct.acct_type + " account.";
