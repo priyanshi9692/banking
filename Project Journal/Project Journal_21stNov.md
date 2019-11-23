@@ -1,5 +1,4 @@
 # Project Scrum Journal
-
 ## Weekly Scrum Report - 11/21/19
 
 * Priyanshi
