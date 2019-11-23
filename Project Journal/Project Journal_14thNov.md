@@ -1,6 +1,6 @@
 # Project Scrum Journal
 
-## Weekly Scrum Report - 11/07/19
+## Weekly Scrum Report - 11/14/19
 
 * Priyanshi
   1. Updated Architecture diagram.
