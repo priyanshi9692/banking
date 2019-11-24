@@ -19,8 +19,15 @@ var transporter = nodemailer.createTransport({
     }
   });
 
+// let customerInfo = {}
+// let customer_id = ""
+// let routing_num = ""
+// let customer_email = ""
 router.get('/addacct', function(req, res, next) {
-  res.render("addacct", { title: 'Banking System - Add Account' })
+    // customer_id = req.body.customer_id
+    // routing_num = req.body.routing_num
+    // customer_email = req.body.customer_email
+    res.render("addacct", { title: 'Banking System - Add Account' })
 });
 
 router.post('/addacct', function(req, res, next) {
@@ -31,9 +38,10 @@ router.post('/addacct', function(req, res, next) {
     console.log(req.body);
     var newAcct = {};
     var newAcctNum;
-    //console.log(req.body.firstname);
-    newAcct.customer_id = parseInt(req.body.customer_id);
-    newAcct.routing_num = req.body.routing_num;
+    // newAcct.customer_id = parseInt(req.body.customer_id);
+    // newAcct.routing_num = req.body.routing_num;
+    newAcct.customer_id = customer_id;
+    newAcct.routing_num = routing_num;
     newAcct.acct_type = req.body.acct_type;
     newAcct.balance_amt = parseFloat(req.body.init_balance);
     // newAcct.currency = "$";
@@ -47,7 +55,7 @@ router.post('/addacct', function(req, res, next) {
                 + "VALUES (" + newAcct.customer_id + ", '" + newAcct.routing_num + "', '" + newAcct.acct_type 
                 +  "', " + newAcct.balance_amt + ", '$',  current_timestamp())";
         con.query(sql,function(err,result){
-            if (err) throw err;
+            if (err) return res.sendStatus(500)
             else {
             console.log("Customer " + newAcct.customer_id + " opened a new " + newAcct.acct_type + " account.");
             }
@@ -56,11 +64,12 @@ router.post('/addacct', function(req, res, next) {
         //get new account number for emailing it to customer
         sql = "SELECT LAST_INSERT_ID() as acct_num;";
         con.query(sql,function(err,result){
-            if (err) throw err;
+            if (err) return res.sendStatus(500)
             else {
                 newAcctNum = result[0].acct_num
-                
+
                 mailOptions.to = "wei.he@sjsu.edu";
+                // mailOptions.to = customer_email + "; wei.he@sjsu.edu";
                 mailOptions.subject = "Congratulations!!!You opened a new " + newAcct.acct_type + " account.";
                 mailOptions.html = "Hi <b> dear customer</b>, " + "<br /> <br /> Your new " + newAcct.acct_type + " account number is " + newAcctNum + ". <br/><br /> Regards, <br /> CMPE-202 Group 3";
                 transporter.sendMail(mailOptions, function (error, info) {
@@ -72,6 +81,8 @@ router.post('/addacct', function(req, res, next) {
                 });
             }
             con.end();
+
+            res.sendStatus(200)
         });
 
         
@@ -93,35 +104,43 @@ router.post('/closeacct', function(req, res, next) {
 
     var con = mysql.createConnection(database);
     con.connect(function(err) {
-        if (err) throw err;
+        if (err) {
+            return res.sendStatus(500)
+        }
         console.log("Connected!");
         var sql = "UPDATE account " 
                 + "SET if_closed = 'Closed' "
                 + "WHERE acct_num = " + closingAcct.acct_num + ";";
         con.query(sql,function(err,result){
-            if (err) throw err;
+            if (err) return res.sendStatus(500)
             else {
             console.log("Account " + closingAcct.acct_num + " has been closed.");
             }
 
             con.end()
+
+            // if (result.changedRows === 0)  {
+            //     res.statusMessage = "No account found!"
+            //     res.status(500).end()
+            //     return
+            // }
+
+            mailOptions.to = "wei.he@sjsu.edu";
+            // mailOptions.to = closingAcct.email + "; wei.he@sjsu.edu";
+            mailOptions.subject = "Your " + closingAcct.acct_type + " account " + closingAcct.acct_num + " has been closed successfully!";
+            mailOptions.html = "Hi <b> dear customer</b>, " + "<br /> <br /> Your "
+                            + closingAcct.acct_type + " account " + closingAcct.acct_num + " has been closed successfully! <br/><br /> Regards, <br /> CMPE-202 Group 3";
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Sending success email ' + info.response);
+                }
+            });
+
+            res.sendStatus(200)
         });
     });
-
-    mailOptions.to = "wei.he@sjsu.edu";
-    // mailOptions.to = closingAcct.email + "; wei.he@sjsu.edu";
-    mailOptions.subject = "Your " + closingAcct.acct_type + " account " + closingAcct.acct_num + " has been closed successfully!";
-    mailOptions.html = "Hi <b> dear customer</b>, " + "<br /> <br /> Your "
-                     + closingAcct.acct_type + " account " + closingAcct.acct_num + " has been closed successfully! <br/><br /> Regards, <br /> CMPE-202 Group 3";
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Sending success email ' + info.response);
-        }
-    });
-
-    res.send({ OK: 1 })
 
     // db.close();
     // }

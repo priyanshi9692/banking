@@ -117,7 +117,7 @@ button:hover {
     //   }));
     // }
 
-    function newAccount() {
+    async function newAccount() {
       let data = new FormData(document.querySelector('form'))
       let obj = {}
       data.forEach((v, k) => {
@@ -125,15 +125,32 @@ button:hover {
       })
 
       console.log(obj)
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", "/addacct", true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({
+
+      // const response = await fetch('/addacct?id=' + customer_id + '&rn=' + routing_num, {
+      const response = await fetch('/addacct', {
+        method: 'POST',
+        body: JSON.stringify({
+          // "customer_id": customer_id,
+          // "routing_num": routing_num,
           "customer_id": "4",
           "routing_num": "00001",
           "acct_type": obj['accttype'],
           "init_balance": obj['initbalance']
-      }));
+        }), // string or object
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.status == 200) {
+        alert(obj['accttype'] + " account successfully opened!")
+      } else {
+        alert("Failed")
+      }
+      // var xhr = new XMLHttpRequest();
+      // xhr.open("POST", "/addacct", true);
+      // xhr.setRequestHeader('Content-Type', 'application/json');
+      // xhr.send(JSON.stringify());
     }
   </script>
 </html>
