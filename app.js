@@ -6,10 +6,20 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
+var signupRouter = require('./routes/signup');
+var signinRouter = require('./routes/signin');
+var dashboardRouter=require('./routes/dashboard');
+var session = require('client-sessions');
 var accountRouter = require('./routes/accounts');
 
 var app = express();
-
+app.use(session({
+  cookieName: 'session',
+  secret: 'random_string_goes_here',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+}));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -22,6 +32,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/signup',signupRouter);
+app.use('/login',signinRouter);
+app.use('/', dashboardRouter);
+
 app.use(accountRouter);
 const port = 5000;
 

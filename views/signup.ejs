@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<style>
+  
+</style>
+
+<head>
+  <meta charset="utf-8">
+  <title>Register Form</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="css/signup.css" />
+</head>
+
+<body>
+  <div class="container">
+    <section id="content">
+      <form action="signup" method="POST" class="form-design">
+
+        <h1>Sign Up</h1>
+        <p style="font-size: 20px;">Please fill in this form to add an account.</p>
+        <hr>
+        <div>
+          <label for="firstname"><b>First Name</b></label>
+          <input type="text" placeholder="firstname" name="firstname" required>
+        </div>
+        <div>
+          <label for="lastname"><b>Last Name</b></label>
+          <input type="text" placeholder="lastname" name="lastname" required>
+        </div>
+        <div>
+          <label for="bdate"><b>Birthday</b></label>
+          <input type="date" placeholder="mm/dd/yyyy" name="bdate" required>
+        </div>
+        <div> 
+            <label for="username"><b>User Name</b></label>
+            <input type="text" placeholder="username" name="username" required>
+          </div>
+        <div>
+          <label for="ssn"><b>Social Security Number</b></label>
+          <input type="text" placeholder="ssn" name="ssn" required>
+        </div>
+        <div>
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="email" name="email" required>
+        </div>
+        <div>
+          <label for="password"><b>Password</b></label>
+          <input type="password" placeholder="password" name="password" required>
+        </div>
+        <!-- <div>
+          <label for="psw-repeat"><b>Repeat Password</b></label>
+          <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+        </div> -->
+        <div>
+            <label for="account_type"><b>Account Type</b></label>
+            <select name="account_type" style="    height: 45px;
+            width: 95%;">
+                <option value="savings">Savings</option>
+                <option value="checking">Checking</option>
+              </select>
+          </div>
+        <div>
+          <label for="address"><b>Address</b></label>
+          <input type="text" placeholder="address" name="address" required>
+        </div>
+
+        <div>
+          <label for="city"><b>City</b></label>
+          <input type="text" placeholder="city" name="city" required>
+        </div>
+        <div>
+          <label for="state"><b>State</b></label>
+          <input type="text" placeholder="state" name="state" required>
+        </div>
+        <div>
+          <label for="zipcode"><b>Zipcode</b></label>
+          <input type="number" placeholder="zipcode" name="zipcode" required>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+          </label>
+        </div>
+        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+        <div class="clearfix">
+          <button type="button" class="register">Cancel</button>
+          <button type="submit" class="register">Register</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+</body>
+
+<script>
+
+</script>
+
+</html>

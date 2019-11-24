@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+       
+<head>
+    <meta charset="utf-8">
+    <title>login-credentials</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/signup.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+    <div class="container">
+      <section id="content">
+        <form action="javascript:void(0);">
+          <h1>Login Form</h1>
+          <div>
+            <input type="text" placeholder="Username" required="" id="username" />
+          </div>
+          <div>
+            <input type="password" placeholder="Password" required="" id="password" />
+          </div>
+          <div>
+            <input type="submit" onclick="loginInfo();" value="Log in" />
+            <a href="#">Lost your password?</a>
+          </div>
+        </form><!-- form -->
+        
+      </section><!-- content -->
+    </div><!-- container -->
+    </body>
+    <script>
+    function loginInfo(){
+        var password = document.getElementById("password").value;
+        var username = document.getElementById("username").value;
+        var login = {};
+        login.password = password;
+        login.username = username;
+   console.log(password);
+    $.ajax({url: "login/verify",
+    type: "GET",
+    data:login,
+    success: function(result){
+        if(result=="success"){
+            window.location.href = 'http://localhost:5000/dashboard';
+        } else{
+        alert(result);
+        }
+    }
+});
+    }
+    </script>
+    </html> 
