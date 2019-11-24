@@ -27,10 +27,16 @@ router.get('/addacct', function(req, res, next) {
     // customer_id = req.body.customer_id
     // routing_num = req.body.routing_num
     // customer_email = req.body.customer_email
+    if (req.session.customer_id == null) {
+        return res.sendStatus(403);
+    }
     res.render("addacct", { title: 'Banking System - Add Account' })
 });
 
 router.post('/addacct', function(req, res, next) {
+    if (req.session.customer_id == null) {
+        return res.sendStatus(403);
+    }
     // if (req.body.iscustomer == "new") {
     //     // redirect to sign up
     //     res.redirect("/signup?accttype=" + req.body.accttype);
@@ -40,8 +46,8 @@ router.post('/addacct', function(req, res, next) {
     var newAcctNum;
     // newAcct.customer_id = parseInt(req.body.customer_id);
     // newAcct.routing_num = req.body.routing_num;
-    newAcct.customer_id = customer_id;
-    newAcct.routing_num = routing_num;
+    newAcct.customer_id = req.session.customer_id;
+    newAcct.routing_num = req.session.routing_num;
     newAcct.acct_type = req.body.acct_type;
     newAcct.balance_amt = parseFloat(req.body.init_balance);
     // newAcct.currency = "$";
