@@ -58,7 +58,7 @@ button:hover {
 
 </style>
   <body>
-    <form method="POST"  style="border:1px solid #ccc">
+    <form style="border:1px solid #ccc">
       <div class="container" id="panel1">
         <h1>Open An Account</h1>
         <hr>
@@ -88,7 +88,7 @@ button:hover {
     
         <div class="clearfix">
           <!-- <button type="submit" class="submitbtn">Submit</button> -->
-          <button type="submit" class="nextbtn" onclick="newAccount();">Submit</button>
+          <button type="button" class="nextbtn" onclick="newAccount();">Submit</button>
         </div>
       </div>
     </form>
@@ -118,14 +118,21 @@ button:hover {
     // }
 
     function newAccount() {
+      let data = new FormData(document.querySelector('form'))
+      let obj = {}
+      data.forEach((v, k) => {
+        obj[k] = v
+      })
+
+      console.log(obj)
       var xhr = new XMLHttpRequest();
       xhr.open("POST", "/addacct", true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify({
           "customer_id": "4",
           "routing_num": "00001",
-          "acc_type": document.getElementsByName('accttype').value,
-          "init_balance": document.getElementsByName('initbalance').value
+          "acct_type": obj['accttype'],
+          "init_balance": obj['initbalance']
       }));
     }
   </script>
