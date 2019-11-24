@@ -7,7 +7,9 @@
   
 
 * Wei
-  
+  1. Completed APIs.
+  2. Added email notification for adding/closing account.
+  3. TODO: Integration.
 
 * Roberto
 
