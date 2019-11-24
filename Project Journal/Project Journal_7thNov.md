@@ -16,6 +16,7 @@
   1. Updated Project Sprint Task Sheet
 
 * Animesh
+  1. Understand working of existing code and flow of control.
 
 ## Meeting Summary
 
