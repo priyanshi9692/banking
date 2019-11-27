@@ -4,7 +4,7 @@ var mysql = require('mysql');
 var db = require('../db/db_config');
 var database = db.DB;
 
-router.get('/admin', function(req, res, next) {
+router.get('/', function(req, res, next) {
     // con.connect(function(err) {
     //   if (err) throw err;
     //   console.log("Connected!");
@@ -17,7 +17,9 @@ router.get('/admin', function(req, res, next) {
     //   })
   
     // });
-    res.render('admin_dashboard');
+    res.render('admin_dashboard',{
+        name:req.session.user.fullname
+    });
   });
 
   module.exports = router;
