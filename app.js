@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var signupRouter = require('./routes/signup');
 var signinRouter = require('./routes/signin');
 var dashboardRouter=require('./routes/dashboard');
+var adminDashboardRouter = require('./routes/admin_dashboard')
 var session = require('client-sessions');
 var accountRouter = require('./routes/accounts');
 
@@ -35,6 +36,7 @@ app.use('/users', usersRouter);
 app.use('/signup',signupRouter);
 app.use('/login',signinRouter);
 app.use('/', dashboardRouter);
+app.use('/admin', adminDashboardRouter);
 
 app.use('/accounts', accountRouter);
 const port = 5000;
