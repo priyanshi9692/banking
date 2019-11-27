@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var signupRouter = require('./routes/signup');
 var signinRouter = require('./routes/signin');
 var dashboardRouter=require('./routes/dashboard');
+var adminDashboardRouter=require('./routes/admin');
 var session = require('client-sessions');
 var app = express();
 app.use(session({
@@ -32,6 +33,7 @@ app.use('/users', usersRouter);
 app.use('/signup',signupRouter);
 app.use('/login',signinRouter);
 app.use('/', dashboardRouter);
+app.use('/', adminDashboardRouter);
 
 const port = 5000;
 
