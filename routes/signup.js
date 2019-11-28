@@ -42,10 +42,10 @@ router.post('/', function(req,res, next) {
     newCustomer.zipcode = req.body.zipcode;
     newCustomer.account_type=req.body.account_type;
     if(req.body.account_type=="savings"){
-        newCustomer.account= "sav00000" + Math.floor(Math.random() * 100);
+        newCustomer.account="sav"+Math.floor(Math.random() * 100000);
       }
     else{
-        newCustomer.account="chk00000"+Math.floor(Math.random()*100);
+        newCustomer.account="chk"+Math.floor(Math.random()* 100000);
       }
     
 
