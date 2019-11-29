@@ -47,10 +47,6 @@ router.post('/', function(req,res, next) {
     else{
         newCustomer.account="chk"+Math.floor(Math.random()* 100000);
       }
-    
-
-    
-
     var con = mysql.createConnection(database);
     con.connect(function(err) {
     if (err) throw err;
