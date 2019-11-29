@@ -88,6 +88,7 @@ router.get('/getbalance', function(req,res){
           transaction.to_account_number=req.body.toAccount;
           transaction.to_routing_number=req.body.toRoutingNum;
           var newBalance = result[0].balance_amt-parseInt(req.body.amount,10);
+          var addBalance=parseInt(req.body.amount,10);
           console.log(transaction);
           var con1=mysql.createConnection(database);
           con1.connect(function(err) {
@@ -99,6 +100,14 @@ router.get('/getbalance', function(req,res){
                 console.log(transaction);
                 console.log("Data successfully inserted");
                 var promise =setup(newBalance,req.body.type,transaction.from_account_number);
+                promise.then(
+                  function(result) { 
+                    console.log(result);
+                    res.send("success");
+                   },
+                  function(error) { /* handle an error */ }
+                );
+                var promise =addTransaction(addBalance,req.body.type,transaction.to_account_number);
                 promise.then(
                   function(result) { 
                     console.log(result);
@@ -145,12 +154,28 @@ var con = mysql.createConnection(database);
   });
 }
 
+var addTransaction = function(addBalance,account_type,toAccount) {
+  return new Promise(function(resolve, reject) {
+ console.log("HerE");
+ var sql = "UPDATE account set balance_amt= balance_amt+ "+addBalance+" where acct_type='"+account_type+"' and acct_num='"+toAccount+"';";
+ var con = mysql.createConnection(database);
+   con.connect(function(err) {
+     if (err) throw err;
+     console.log("Connected to DB!");
+     con.query(sql,function(err,result){
+       if (err) {
+         console.log(err);
+         reject("unsuccessfull");
+             }      
+             else {
+         console.log("Successfully updated");
+         resolve("success");
+       }
+     });
+   });
+ 
+   });
+ }
 
-
-
-
-
-
-
-  module.exports = router;
+module.exports = router;
   
