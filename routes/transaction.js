@@ -14,7 +14,7 @@ router.get('/transaction', function(req, res, next) {
         email:req.session.user.email
     });
 } else {
-    res.render('/login/signin',{
+    res.render('signin',{
         title:"Banking System"
     });
 }
@@ -69,9 +69,88 @@ router.get('/getbalance', function(req,res){
         });
     });
 
+    router.post('/transaction-info', function(req,res, next) {
+      console.log("Input from the user:",req.body);
+      var transaction = {};
+      var sql="select acct_num,routing_num,balance_amt from account a join customer c ON a.customer_id = c.id where c.email='"+ req.session.user.email + "' and a.acct_type= '"+req.body.type+"';";
+      var sql1= "INSERT INTO transactions SET ? ;";
+      var con = mysql.createConnection(database);
+      con.connect(function(err) {
+      if (err) throw err;
+      console.log("Connected to DB!");
+      con.query(sql,function(err,result){
+        if (err) throw err;
+        else {
+          transaction.from_account_number=result[0].acct_num;
+          transaction.from_routing_number=result[0].routing_num;
+          transaction.transaction_amt = req.body.amount;
+          transaction.transaction_timestamp=new Date();
+          transaction.to_account_number=req.body.toAccount;
+          transaction.to_routing_number=req.body.toRoutingNum;
+          var newBalance = result[0].balance_amt-parseInt(req.body.amount,10);
+          console.log(transaction);
+          var con1=mysql.createConnection(database);
+          con1.connect(function(err) {
+            if (err) throw err;
+            console.log("Connected to DB!");
+            con1.query(sql1,transaction, function(err,result){
+              if (err) throw err;
+              else{
+                console.log(transaction);
+                console.log("Data successfully inserted");
+                var promise =setup(newBalance,req.body.type,transaction.from_account_number);
+                promise.then(
+                  function(result) { 
+                    console.log(result);
+                    res.send("success");
+                   },
+                  function(error) { /* handle an error */ }
+                );
+               
+              }
+            
+        })
+        
+      
+      });
+    }
+
+    });
+  });
+});
 
 
-//req.body.type = "SAVINGS";
+
+
+var setup = function(newBalance,account_type,account_num) {
+ return new Promise(function(resolve, reject) {
+console.log("HerE");
+var sql = "UPDATE account set balance_amt="+newBalance+" where acct_type='"+account_type+"' and acct_num='"+account_num+"';";
+var con = mysql.createConnection(database);
+  con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected to DB!");
+    con.query(sql,function(err,result){
+      if (err) {
+        console.log(err);
+        reject("unsuccessfull");
+            }      
+            else {
+        console.log("Successfully updated");
+        resolve("success");
+      }
+    });
+  });
+
+  });
+}
+
+
+
+
+
+
+
 
   module.exports = router;
   
