@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var session = require('express-session');
 var mysql = require('mysql');
 var database = require("../db/db_config").DB
 var nodemailer = require('nodemailer');
@@ -24,60 +25,79 @@ var transporter = nodemailer.createTransport({
 // let routing_num = ""
 // let customer_email = ""
 router.get('/addacct', function(req, res, next) {
+    // ************* need to remove **********
+       req.session.email = 'wei.he@sjsu.edu'
+    // ***************************************
     // customer_id = req.body.customer_id
     // routing_num = req.body.routing_num
     // customer_email = req.body.customer_email
-    if (req.session.customer_id == null) {
-        return res.sendStatus(403);
-    }
+    //******* need to unmark */
+    // if (req.session.email == null) {
+    //     return res.sendStatus(403);
+    // }
+    // ***********************************
     res.render("addacct", { title: 'Banking System - Add Account' })
 });
 
 router.post('/addacct', function(req, res, next) {
-    if (req.session.customer_id == null) {
+    if (req.session.email == null) {
         return res.sendStatus(403);
     }
-    // if (req.body.iscustomer == "new") {
-    //     // redirect to sign up
-    //     res.redirect("/signup?accttype=" + req.body.accttype);
-    // } else if (req.body.iscustomer == "existing") {
     console.log(req.body);
     var newAcct = {};
     var newAcctNum;
-    // newAcct.customer_id = parseInt(req.body.customer_id);
-    // newAcct.routing_num = req.body.routing_num;
-    newAcct.customer_id = req.session.customer_id;
-    newAcct.routing_num = req.session.routing_num;
+    
+    newAcct.routing_num = "00001";// hard code
     newAcct.acct_type = req.body.acct_type;
     newAcct.balance_amt = parseFloat(req.body.init_balance);
-    // newAcct.currency = "$";
-    console.log(JSON.stringify(newAcct));
-
+    newAcct.currency = "$";// hard code
+    
     var con = mysql.createConnection(database);
     con.connect(function(err) {
         if (err) throw err;
         console.log("Connected!");
-        var sql = "INSERT INTO account (customer_id, routing_num, acct_type, balance_amt, currency, open_date) " 
-                + "VALUES (" + newAcct.customer_id + ", '" + newAcct.routing_num + "', '" + newAcct.acct_type 
-                +  "', " + newAcct.balance_amt + ", '$',  current_timestamp())";
+        // Get customer ID by email
+        var sql = "SELECT id "
+                + "FROM customer "
+                + "WHERE email = '" + req.session.email + "'";
         con.query(sql,function(err,result){
             if (err) return res.sendStatus(500)
             else {
-            console.log("Customer " + newAcct.customer_id + " opened a new " + newAcct.acct_type + " account.");
-            }
-        });
+                console.log(result[0].id);
+                var customer_id = result[0].id;
+                console.log(JSON.stringify(newAcct));
 
-        //get new account number for emailing it to customer
-        sql = "SELECT LAST_INSERT_ID() as acct_num;";
+                // Open new account
+                sql = "INSERT INTO account (acct_num, customer_id, routing_num, acct_type, balance_amt, currency, open_date) " 
+                    + "VALUES (FLOOR(RAND()*(999999-100000+1)+100000), " + customer_id + ", '" + newAcct.routing_num + "', '" + newAcct.acct_type 
+                    +  "', " + newAcct.balance_amt + ", '" + newAcct.currency + "',  current_timestamp())";
+                con.query(sql,function(err,result){
+                    if (err) return res.sendStatus(500)
+                    else {
+                    console.log("Customer " + newAcct.customer_id + " opened a new " + newAcct.acct_type + " account.");
+                    }
+                });
+            }
+        }); 
+
+        // Get new account number for emailing it to customer
+        sql = "SELECT acct_num, balance_amt " 
+            + "From account " 
+            + "ORDER BY open_date DESC " 
+            + "LIMIT 1";
         con.query(sql,function(err,result){
             if (err) return res.sendStatus(500)
             else {
                 newAcctNum = result[0].acct_num
+                con.end();
 
                 mailOptions.to = "wei.he@sjsu.edu";
-                // mailOptions.to = customer_email + "; wei.he@sjsu.edu";
-                mailOptions.subject = "Congratulations!!!You opened a new " + newAcct.acct_type + " account.";
-                mailOptions.html = "Hi <b> dear customer</b>, " + "<br /> <br /> Your new " + newAcct.acct_type + " account number is " + newAcctNum + ". <br/><br /> Regards, <br /> CMPE-202 Group 3";
+                // mailOptions.to = req.session.email + "; wei.he@sjsu.edu";
+                mailOptions.subject = "Congratulations!You opened a new " + newAcct.acct_type + " account!";
+                mailOptions.html = "Dear customer, " + "<br /> <br /> " 
+                                    + "Your new <b>" + newAcct.acct_type + "</b> account number is <b>" + newAcctNum + "</b>. <br/><br /> " 
+                                    + "Initial Balance: " + result[0].balance_amt + "<br/><br /> "
+                                    + "Regards, <br /> CMPE-202 Group 3";
                 transporter.sendMail(mailOptions, function (error, info) {
                     if (error) {
                         console.log(error);
@@ -85,14 +105,13 @@ router.post('/addacct', function(req, res, next) {
                         console.log('Sending success email ' + info.response);
                     }
                 });
+
+                res.sendStatus(200)
             }
-            con.end();
-
-            res.sendStatus(200)
         });
-
-        
     });
+    
+
     
     // mailOptions.to = newAcct.email + "; wei.he@sjsu.edu";
 
@@ -105,7 +124,7 @@ router.post('/closeacct', function(req, res, next) {
     var closingAcct = {};
     closingAcct.acct_num = parseInt(req.body.acct_num);
     closingAcct.acct_type = req.body.acct_type;
-    closingAcct.email = req.body.email;
+    closingAcct.email = req.session.email;
     console.log(JSON.stringify(closingAcct));
 
     var con = mysql.createConnection(database);
