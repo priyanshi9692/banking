@@ -17,9 +17,7 @@ router.get('/', function(req, res, next) {
     //   })
   
     // });
-    res.render('admin_dashboard',{
-        name:req.session.user.fullname
-    });
+    res.render('admin_dashboard');
   });
 
   module.exports = router;
