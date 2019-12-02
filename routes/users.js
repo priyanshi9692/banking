@@ -1,9 +1,28 @@
 var express = require('express');
 var router = express.Router();
+var mysql = require('mysql');
 
-/* GET users listing. */
+var db = require('../db/db_config');
+var database = db.DB;
+
+
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  const id = [parseInt(req.query.id)];
+
+  var con = mysql.createConnection(database);
+
+  con.connect(function(err) {
+     if (err) throw err;
+     console.log("Connected!");
+     var sql = "Select * from customer where id = ?";
+     con.query(sql, id, function(err,result){
+       if (err) throw err;
+       else {
+         console.log(result);
+       }
+     })
+
+   });
 });
 
 module.exports = router;
