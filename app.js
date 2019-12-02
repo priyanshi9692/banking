@@ -10,6 +10,9 @@ var usersRouter = require('./routes/users');
 var signupRouter = require('./routes/signup');
 var signinRouter = require('./routes/signin');
 var dashboardRouter=require('./routes/dashboard');
+var adminDashboardRouter=require('./routes/admin');
+var transactionRouter=require('./routes/transaction');
+
 var session = require('client-sessions');
 var accountRouter = require('./routes/accounts');
 
@@ -35,6 +38,11 @@ app.use('/users', usersRouter);
 app.use('/signup',signupRouter);
 app.use('/login',signinRouter);
 app.use('/', dashboardRouter);
+app.use('/', adminDashboardRouter);
+
+
+//Transaction related apis
+app.use('/', transactionRouter);
 
 app.use(accountRouter);
 const port = 5000;
