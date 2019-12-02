@@ -64,8 +64,8 @@ button:hover {
         <hr>
 
         <h3><b>Account Type</b></h3>
-        <label><input type="radio"  name="accttype" id="checking" value="Checking" checked>Checking </br></br></label>
-        <label><input type="radio"  name="accttype" id="saving" value="Saving">Saving </label>
+        <label><input type="radio"  name="accttype" id="checking" value="Checking" <%- exg_accts.includes("Checking") ? "disabled" : "" %> > Checking </br></br></label>
+        <label><input type="radio"  name="accttype" id="saving" value="Saving" <%- exg_accts.includes("Saving") ? "disabled" : "" %>> Saving </label>
         
         <!-- <h3><b>Are you our customer?</b></h3>
         <label><input type="radio"  name="iscustomer" id="customer" value="existing" checked>Yes. Sign in for a faster, prefilled application. </br></br></label>
@@ -88,7 +88,7 @@ button:hover {
     
         <div class="clearfix">
           <!-- <button type="submit" class="submitbtn">Submit</button> -->
-          <button type="button" class="nextbtn" onclick="newAccount();">Submit</button>
+          <button type="button" class="nextbtn" onclick="newAccount();" <%- exg_accts.includes("Saving") && exg_accts.includes("Checking") ? "disabled" : "" %> >Submit</button>
         </div>
       </div>
     </form>
@@ -143,7 +143,8 @@ button:hover {
       });
 
       if (response.status == 200) {
-        alert(obj['accttype'] + " account successfully opened!\nThe account number has been sent to your email.")
+        alert(obj['accttype'] + " account successfully opened!\nThe account number has been sent to customer's email.")
+        window.location.replace("/dashboard");
       } else {
         alert("Failed")
       }

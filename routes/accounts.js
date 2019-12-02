@@ -26,8 +26,37 @@ var transporter = nodemailer.createTransport({
 // let customer_email = ""
 router.get('/addacct', function(req, res, next) {
     // ************* need to remove **********
-       req.session.email = 'wei.he@sjsu.edu'
+    req.session.email = 'breehope@me.com'
     // ***************************************
+
+    // Get existing account types for customer
+    var con = mysql.createConnection(database);
+    con.connect(function(err) {
+        if (err) {
+            return res.sendStatus(500)
+        }
+        console.log("Connected!");
+        var sql = "SELECT DISTINCT acct_type "
+                + "FROM account "
+                + "WHERE if_closed IS NULL "
+                + "AND customer_id = (SELECT id FROM customer WHERE email = '" + req.session.email + "');";
+        con.query(sql,function(err,result){
+            if (err) return res.sendStatus(500)
+            // else {
+                
+            // }
+            console.log("Got existing account types for customer.");
+            var exg_accts = result.map(x => x.acct_type);
+                // res.json(exg_accts);
+
+            con.end()
+
+            // res.sendStatus(200)
+
+            res.render("addacct", { title: 'Banking System - Add Account', exg_accts: exg_accts })
+        });
+    });
+    
     // customer_id = req.body.customer_id
     // routing_num = req.body.routing_num
     // customer_email = req.body.customer_email
@@ -35,8 +64,8 @@ router.get('/addacct', function(req, res, next) {
     // if (req.session.email == null) {
     //     return res.sendStatus(403);
     // }
-    // ***********************************
-    res.render("addacct", { title: 'Banking System - Add Account' })
+    // // ***********************************
+    // res.render("addacct", { title: 'Banking System - Add Account' })
 });
 
 router.post('/addacct', function(req, res, next) {
@@ -59,7 +88,7 @@ router.post('/addacct', function(req, res, next) {
         // Get customer ID by email
         var sql = "SELECT id "
                 + "FROM customer "
-                + "WHERE email = '" + req.session.email + "'";
+                + "WHERE email = '" + req.session.email + "';";
         con.query(sql,function(err,result){
             if (err) return res.sendStatus(500)
             else {
