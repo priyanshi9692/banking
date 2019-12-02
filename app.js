@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
 var signupRouter = require('./routes/signup');
 var signinRouter = require('./routes/signin');
 var dashboardRouter=require('./routes/dashboard');
@@ -13,6 +14,8 @@ var adminDashboardRouter=require('./routes/admin');
 var transactionRouter=require('./routes/transaction');
 
 var session = require('client-sessions');
+var accountRouter = require('./routes/accounts');
+
 var app = express();
 app.use(session({
   cookieName: 'session',
@@ -41,6 +44,7 @@ app.use('/', adminDashboardRouter);
 //Transaction related apis
 app.use('/', transactionRouter);
 
+app.use(accountRouter);
 const port = 5000;
 
 // catch 404 and forward to error handler
