@@ -36,7 +36,7 @@ app.use('/signup',signupRouter);
 app.use('/login',signinRouter);
 app.use('/', dashboardRouter);
 
-app.use('/accounts', accountRouter);
+app.use(accountRouter);
 const port = 5000;
 
 // catch 404 and forward to error handler
