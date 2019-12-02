@@ -18,7 +18,8 @@ router.get('/dashboard', function(req, res, next) {
   
     // });
     res.render('dashboard',{
-        name:req.session.user.fullname
+        name:req.session.user.fullname,
+        email:req.session.user.email
     });
   });
 
