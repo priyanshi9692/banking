@@ -38,30 +38,17 @@ router.get('/addacct', function(req, res, next) {
                 + "AND customer_id = (SELECT id FROM customer WHERE email = '" + req.session.email + "');";
         con.query(sql,function(err,result){
             if (err) return res.sendStatus(500)
-            // else {
-                
-            // }
             console.log("Got existing account types for customer.");
             var exg_accts = result.map(x => x.acct_type);
-                // res.json(exg_accts);
-
             con.end()
-
-            // res.sendStatus(200)
-
+            //******* need to unmark */
+            // if (req.session.email == null) {
+            //     return res.sendStatus(403);
+            // }
+            // // ***********************************
             res.render("addacct", { title: 'Banking System - Add Account', exg_accts: exg_accts })
         });
     });
-    
-    // customer_id = req.body.customer_id
-    // routing_num = req.body.routing_num
-    // customer_email = req.body.customer_email
-    //******* need to unmark */
-    // if (req.session.email == null) {
-    //     return res.sendStatus(403);
-    // }
-    // // ***********************************
-    // res.render("addacct", { title: 'Banking System - Add Account' })
 });
 
 router.post('/addacct', function(req, res, next) {
@@ -159,12 +146,6 @@ router.post('/closeacct', function(req, res, next) {
 
             con.end()
 
-            // if (result.changedRows === 0)  {
-            //     res.statusMessage = "No account found!"
-            //     res.status(500).end()
-            //     return
-            // }
-
             mailOptions.to = "wei.he@sjsu.edu";
             // mailOptions.to = closingAcct.email + "; wei.he@sjsu.edu";
             mailOptions.subject = "Your " + closingAcct.acct_type + " account " + closingAcct.acct_num + " has been closed successfully!";
@@ -181,9 +162,6 @@ router.post('/closeacct', function(req, res, next) {
             res.sendStatus(200)
         });
     });
-
-    // db.close();
-    // }
 })
 
 /**
