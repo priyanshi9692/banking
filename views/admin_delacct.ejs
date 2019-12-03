@@ -161,8 +161,8 @@
             <div class="col-md-12">
               <div class="card ">
                 <div class="card-header ">
-                  <h5 class="card-title">Delete Account</h5>
-                  Search Account
+                  <h5 class="card-title">Show Accounts</h5>
+                  Search by Customer ID
                   <form>
                       <div class="input-group no-border">
                         <input type="text" id="customer_id" class="form-control" placeholder="Customer ID">
@@ -202,7 +202,7 @@
 
                             });
                           }).catch(err => {
-                            // handle error
+                            console.log(err);
                           })
                         }
 
@@ -228,12 +228,6 @@
                     </thead>
                     </table>
                 </div>
-                <div class="card-footer ">
-                  <hr>
-                  <div class="stats">
-                    <i class="fa fa-history"></i> 
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -243,62 +237,17 @@
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Transaction Statistics</h5>
+                <h5 class="card-title">Close Account</h5>
                 <p class="card-category"></p>
               </div>
               <div class="card-body ">
-                <canvas id=chartHours width="400" height="100"></canvas>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                  <i class="fa fa-history"></i> Updated 3 minutes ago
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card ">
-              <div class="card-header ">
-                <h5 class="card-title">Recurring Transfers</h5>
-                <p class="card-category">Latest Report</p>
-              </div>
-              <div class="card-body ">
-                <canvas id="chartEmail"></canvas>
-              </div>
-              <div class="card-footer ">
-                <div class="legend">
-                  <!-- <i class="fa fa-circle text-primary"></i> Critical
-                  <i class="fa fa-circle text-warning"></i> High Priority
-                  <i class="fa fa-circle text-danger"></i>Medium Priority
-                  <i class="fa fa-circle text-gray"></i> Low Priority -->
-                </div>
-                <hr>
-                <div class="stats">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-8">
-            <div class="card card-chart">
-              <div class="card-header">
-                <h5 class="card-title">Total Transactions</h5>
-                <p class="card-category">Daily Transactions</p>
-              </div>
-              <div class="card-body">
-                <canvas id="speedChart" width="400" height="100"></canvas>
-              </div>
-              <div class="card-footer">
-                <div class="chart-legend">
-                  <i class="fa fa-circle text-info"></i> Total Balance
-                  <i class="fa fa-circle text-warning"></i> Successful Transactions
-                </div>
-                <hr/>
-                <div class="card-stats">
-              
-                </div>
+                <input type="text" id="account_num" class="form-control" placeholder="Account Number">
+                <br>
+                <input type="text" id="email" class="form-control" placeholder="Email">
+                <br>
+                <input type="text" id="account_type" class="form-control" placeholder="Account Type">
+                <br>
+                <button type="button" onclick="deleteAccount()" class="btn btn-primary">Submit</button>
               </div>
             </div>
           </div>
@@ -307,6 +256,32 @@
       <%- include footer.ejs %>
     </div>
   </div>
+  <!--JS Scripts-->
+  <script>
+
+
+    function deleteAccount() {
+      let account_num = document.getElementById("account_num").value
+      let account_email = document.getElementById("email").value
+      let account_type = document.getElementById("account_type").value
+
+      data = {
+        acct_num: account_num,
+        acct_type: account_type,
+        email: account_email
+      }
+
+      console.log(data)
+
+      axios.post('/closeacct', data)
+      .then(response => {
+        alert("Account successfully deleted")
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }
+  </script>
   <!--   Core JS Files   -->
   <script src=" js/core/jquery.min.js"></script>
   <script src=" js/core/popper.min.js"></script>
