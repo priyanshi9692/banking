@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href=" img/apple-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
   <link rel="icon" type="image/png" href=" img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
@@ -14,11 +14,12 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
-  <link href=" css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
-  <link href=" css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+  <link href= "css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href=" demo/demo.css" rel="stylesheet" />
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body class="">
@@ -33,7 +34,7 @@
             <img src=" img/priyanshi.jpg">
           </div>
         </a>
-        <a href="/admin_dashboard" class="simple-text logo-normal">
+        <a href="/admin" class="simple-text logo-normal">
           Admin
           <!-- <div class="logo-image-big">
             <img src=" img/logo-big.png">
@@ -42,7 +43,7 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="active ">
+          <li>
             <a href="/admin">
               <i class="nc-icon nc-cloud-upload-94"></i>
               <p>Edit Transaction</p>
@@ -54,7 +55,7 @@
               <p>Open An Account</p>
             </a>
           </li>
-          <li>
+          <li  class="active">
             <a href="/del">
               <i class="nc-icon nc-single-02"></i>
               <p>Close Account</p>
@@ -74,32 +75,7 @@
 </div> -->
       <div class="content">
         <div class="row">
-          <div class="col-lg-6 col-md-12 col-sm-12">
-            <div class="card card-stats">
-              <div class="card-body ">
-                <div class="row">
-                  <div class="col-5 col-md-4">
-                    <div class="icon-big text-center icon-warning">
-                      <i class="nc-icon nc-single-copy-04 text-warning"></i>
-                    </div>
-                  </div>
-                  <div class="col-7 col-md-8">
-                    <div class="numbers" >
-                      <p class="card-category" >Total Balance</p>
-                      <p class="card-title" id="num" > $00.00</p>
-                        <p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                  <i class="fa fa-refresh"></i> Update Now
-                </div>
-              </div>
-            </div>
-          </div>
+         
           <!-- <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
               <div class="card-body ">
@@ -185,23 +161,70 @@
             <div class="col-md-12">
               <div class="card ">
                 <div class="card-header ">
-                  <h5 class="card-title">Transaction Details</h5>
+                  <h5 class="card-title">Delete Account</h5>
+                  Search Account
+                  <form>
+                      <div class="input-group no-border">
+                        <input type="text" id="customer_id" class="form-control" placeholder="Customer ID">
+                        <div class="input-group-append">
+                          <div class="input-group-text">
+                            <button type="button" onclick="getAccounts()">
+                            <i class="nc-icon nc-zoom-split"></i>
+                          </button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                    <script>
+                      async function getAccounts() {
+                        const accountid = document.getElementById("customer_id").value;
+                        axios.get(`/users?id=${accountid}`).then(
+                          (response) => {
+                            console.log(response.data)
+                            response.data.forEach((account, i) => {
+                              console.log(account)
+                              console.log(account.acct_num);
+
+                              let account_number = `${account.acct_num}`
+                              console.log(account_number)
+                              let account_type = `${account.acct_type}` 
+                              console.log(account_type);
+                              let balance = `${account.currency}${account.balance_amt.toString()}`
+                              console.log(balance);
+                              let if_closed = account.if_closed === null ? "True" : "False"
+                              console.log(if_closed);
+                              let table_row = `<td>${account_number}</td>
+                                               <td>${account_type}</td>
+                                               <td>${balance}</td>
+                                               <td>${if_closed}</td>`
+
+                              document.getElementById(`account${i + 1}`).innerHTML = table_row;
+
+                            });
+                          }).catch(err => {
+                            // handle error
+                          })
+                        }
+
+                    </script>
+                    
                   <p class="card-category"></p>
                 </div>
                 <div class="card-body ">
                   <table id="projects-table" class="cell-border" style="width:100%">
                     <thead>
                         <tr>
-                          
-                            <!-- <th>Project Name</th>
-                          
-                            <th>App Link</th>
+                            <th>Account Number</th>
          
-                            <th>Documentation</th>
-                            <th>Test Data</th>
-                            <th>Test Cases</th> -->
+                            <th>Account Type</th>
+
+                            <th>Balance</th>
+
+                            <th>Is Active</th>
 
                         </tr>
+                        <tr id="account1"></tr>
+                        <tr id="account2"></tr>
                     </thead>
                     </table>
                 </div>

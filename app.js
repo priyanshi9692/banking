@@ -13,6 +13,7 @@ var dashboardRouter=require('./routes/dashboard');
 var adminDashboardRouter = require('./routes/admin_dashboard')
 var session = require('client-sessions');
 var accountRouter = require('./routes/accounts');
+var adminDelete = require('./routes/admin_delacct')
 
 var app = express();
 app.use(session({
@@ -37,6 +38,7 @@ app.use('/signup',signupRouter);
 app.use('/login',signinRouter);
 app.use('/', dashboardRouter);
 app.use('/admin', adminDashboardRouter);
+app.use('/del', adminDelete);
 
 app.use('/accounts', accountRouter);
 const port = 5000;
