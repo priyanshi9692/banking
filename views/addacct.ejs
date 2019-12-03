@@ -58,58 +58,99 @@ button:hover {
 
 </style>
   <body>
-    <form method="POST"  style="border:1px solid #ccc">
+    <form style="border:1px solid #ccc">
       <div class="container" id="panel1">
-        <h1>Open an Account</h1>
+        <h1>Open An Account</h1>
         <hr>
 
         <h3><b>Account Type</b></h3>
         <label><input type="radio"  name="accttype" id="checking" value="Checking" checked>Checking </br></br></label>
         <label><input type="radio"  name="accttype" id="saving" value="Saving">Saving </label>
         
-        <h3><b>Are you our customer?</b></h3>
+        <!-- <h3><b>Are you our customer?</b></h3>
         <label><input type="radio"  name="iscustomer" id="customer" value="existing" checked>Yes. Sign in for a faster, prefilled application. </br></br></label>
-        <label><input type="radio"  name="iscustomer" id="notcustomer" value="new">No. Sign up. </label>
-        
-    
-        <div class="clearfix">
+        <label><input type="radio"  name="iscustomer" id="notcustomer" value="new">No. Sign up. </label> -->
+        </br></br> 
+        <h3><b>Initial Balance</b></h3>
+        <lable>$<input type="number" placeholder= "Initial Balance" name="initbalance" required value="0.00"></lable>
+        <!-- <div class="clearfix">
           <button type="button" class="nextbtn" onclick="switchPanel(document.getElementById('panel1'), document.getElementById('panel2'))">Next</button>
-        </div>
+        </div> -->
         <!-- <div class="clearfix">
           <button type="button" class="nextbtn" onclick="postData();">Post</button>
         </div> -->
       </div>
 
-      <div id="panel2" class="container" style="display: none;">
+      <!-- <div id="panel2" class="container" style="display: none;">
         <h1>Open an Account - Fund Your Account</h1>
-        <hr>
-        <label for="initbalance"><b>Initial Balance</b></label>
-        <lable></br></br>$<input type="number" placeholder= "Initial Balance" name="initbalance" required value="0.00"></lable>
+        <hr> -->
+        
     
         <div class="clearfix">
-          <button type="submit" class="submitbtn">Submit</button>
+          <!-- <button type="submit" class="submitbtn">Submit</button> -->
+          <button type="button" class="nextbtn" onclick="newAccount();">Submit</button>
         </div>
       </div>
     </form>
   </body>
   <script>
-    function switchPanel(prev, next) {
-      if (document.getElementById('customer').checked == true) {
-        prev.style.display = "none";
-        next.style.display = "";
-      } else {
-        
-      }
-      
-    }
+    // function switchPanel(prev, next) {
+    //   // if: User IS an existing customer, then go to fundacct
+    //   // else: User is NOT our customer yet, then go to sign up
+    //   if (document.getElementById('customer').checked == true) {
+    //     postCustomerData()
+    //     prev.style.display = "none"
+    //     next.style.display = ""
+    //   } else {
+    //     window.location.href = "/signup?accttype=" + document.getElementsByName('accttype').value
+    //   }   
+    // }
 
-    function postData() {
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", "/accounts/postsignup?accttype=checking", true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({
-          customer_id: "123"
-      }));
+    // function postCustomerData() {
+    //   var xhr = new XMLHttpRequest();
+    //   xhr.open("POST", "/postsignup", true);
+    //   xhr.setRequestHeader('Content-Type', 'application/json');
+    //   xhr.send(JSON.stringify({
+    //       "customer_id": "4",
+    //       "routing_num": "00001",
+    //       "acc_type": document.getElementsByName('accttype').value
+    //   }));
+    // }
+
+    async function newAccount() {
+      let data = new FormData(document.querySelector('form'))
+      let obj = {}
+      data.forEach((v, k) => {
+        obj[k] = v
+      })
+
+      console.log(obj)
+
+      // const response = await fetch('/addacct?id=' + customer_id + '&rn=' + routing_num, {
+      const response = await fetch('/addacct', {
+        method: 'POST',
+        body: JSON.stringify({
+          // "customer_id": customer_id,
+          // "routing_num": routing_num,
+          // "customer_id": "4",
+          // "routing_num": "00001",
+          "acct_type": obj['accttype'],
+          "init_balance": obj['initbalance']
+        }), // string or object
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.status == 200) {
+        alert(obj['accttype'] + " account successfully opened!\nThe account number has been sent to your email.")
+      } else {
+        alert("Failed")
+      }
+      // var xhr = new XMLHttpRequest();
+      // xhr.open("POST", "/addacct", true);
+      // xhr.setRequestHeader('Content-Type', 'application/json');
+      // xhr.send(JSON.stringify());
     }
   </script>
 </html>
