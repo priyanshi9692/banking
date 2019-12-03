@@ -12,7 +12,7 @@ var signinRouter = require('./routes/signin');
 var dashboardRouter=require('./routes/dashboard');
 var adminDashboardRouter=require('./routes/admin');
 var transactionRouter=require('./routes/transaction');
-
+var editProfileRouter=require('./routes/editprofile');
 var session = require('client-sessions');
 var accountRouter = require('./routes/accounts');
 
@@ -39,6 +39,7 @@ app.use('/signup',signupRouter);
 app.use('/login',signinRouter);
 app.use('/', dashboardRouter);
 app.use('/', adminDashboardRouter);
+app.use('/', editProfileRouter);
 
 
 //Transaction related apis
