@@ -69,7 +69,7 @@ router.get('/getbalance', function(req,res){
         });
     });
 
-    router.post('/transaction-money', function(req,res, next) {
+router.post('/transaction-money', function(req,res, next) {
       console.log("Input from the user:",req.body);
       var transaction = {};
       var sql="select acct_num,routing_num,balance_amt from account a join customer c ON a.customer_id = c.id where c.email='"+ req.session.user.email + "' and a.acct_type= '"+req.body.type+"';";
@@ -121,7 +121,7 @@ router.get('/getbalance', function(req,res){
                         var promise2 =addFrequency(recurring);
                         promise2.then(
                           function(result2) { 
-                            console.log("",result2);
+                            console.log("Successfully added in recurring table",result2);
                             res.send("success");
                            },
                           function(error) { /* handle an error */ }
@@ -149,14 +149,6 @@ router.get('/getbalance', function(req,res){
     });
   });
 });
-
-
-
-
-
-
-
-
 var setup = function(newBalance,account_type,account_num) {
  return new Promise(function(resolve, reject) {
 console.log("HerE");
@@ -182,8 +174,7 @@ var con = mysql.createConnection(database);
 
 var addTransaction = function(addBalance,account_type,toAccount) {
   return new Promise(function(resolve, reject) {
-
- var sql = "UPDATE account set balance_amt= balance_amt+ "+addBalance+" where acct_type= 'checking' and acct_num='"+toAccount+"';";
+var sql = "UPDATE account set balance_amt= balance_amt+ "+addBalance+" where acct_num='"+toAccount+"';";
  var con = mysql.createConnection(database);
    con.connect(function(err) {
      if (err) throw err;
