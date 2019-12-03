@@ -14,11 +14,11 @@ router.get('/', function(req, res, next) {
   con.connect(function(err) {
      if (err) throw err;
      console.log("Connected!");
-     var sql = "Select * from customer where id = ?";
+     var sql = "Select * from account where customer_id = ?";
      con.query(sql, id, function(err,result){
        if (err) throw err;
        else {
-         console.log(result);
+         res.send(result);
        }
      })
 
