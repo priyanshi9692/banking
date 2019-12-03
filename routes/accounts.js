@@ -167,19 +167,8 @@ router.post('/closeacct', function(req, res, next) {
         });
     });
 
-    // db.close();
-    // }
+   
 })
-// router.post('/postsignup', function(req, res, next) {
-//     var customer_id = req.body.customer_id
-//     var routing_num =  req.body.routing_num
-//     var acc_type = req.body.accttype
-//     console.log(req.body)
 
-// })
-
-// router.get('/fundacct', function(req, res, next) {
-//     res.render("fundacct", { title: 'Banking System - Add Account' })
-//   });
 
 module.exports = router;
