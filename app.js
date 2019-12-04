@@ -40,12 +40,12 @@ app.use('/login',signinRouter);
 app.use('/', dashboardRouter);
 app.use('/', adminDashboardRouter);
 app.use('/', editProfileRouter);
+app.use('/',accountRouter);
 
 
 //Transaction related apis
 app.use('/', transactionRouter);
 
-app.use(accountRouter);
 const port = 5000;
 
 // catch 404 and forward to error handler
