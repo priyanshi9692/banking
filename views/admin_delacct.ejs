@@ -50,7 +50,7 @@
             </a>
           </li>
           <li>
-            <a href="/signup" >
+            <a href="/pre-signup" >
               <i class="nc-icon nc-tap-01"></i>
               <p>Open An Account</p>
             </a>
@@ -193,7 +193,8 @@
                               console.log(balance);
                               let if_closed = account.if_closed === null ? "True" : "False"
                               console.log(if_closed);
-                              let table_row = `<td>${account_number}</td>
+                              let table_row = `<td>${account.email}</td>
+                                               <td>${account_number}</td>
                                                <td>${account_type}</td>
                                                <td>${balance}</td>
                                                <td>${if_closed}</td>`
@@ -214,14 +215,11 @@
                   <table id="projects-table" class="cell-border" style="width:100%">
                     <thead>
                         <tr>
+                            <th>Account Email</th>
                             <th>Account Number</th>
-         
                             <th>Account Type</th>
-
                             <th>Balance</th>
-
                             <th>Is Active</th>
-
                         </tr>
                         <tr id="account1"></tr>
                         <tr id="account2"></tr>
@@ -275,7 +273,7 @@
 
       axios.post('/closeacct', data)
       .then(response => {
-        alert("Account successfully deleted")
+        alert("Account successfully closed")
       })
       .catch(err => {
         console.log(err)
