@@ -9,10 +9,12 @@
   
 
 * Wei
-  
+  1. Updated API schemas.
+  2. Changed adding account GUI and logic flow.
+  3. TODO: Implement APIs with new schemas.
 
 * Roberto
-
+  1. Create branch for admin dashboard 
 
 * Animesh
 

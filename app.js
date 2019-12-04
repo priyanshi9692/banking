@@ -10,8 +10,13 @@ var usersRouter = require('./routes/users');
 var signupRouter = require('./routes/signup');
 var signinRouter = require('./routes/signin');
 var dashboardRouter=require('./routes/dashboard');
+var adminDashboardRouter = require('./routes/admin_dashboard')
+var transactionRouter=require('./routes/transaction');
+var editProfileRouter=require('./routes/editprofile');
+
 var session = require('client-sessions');
 var accountRouter = require('./routes/accounts');
+var adminDelete = require('./routes/admin_delacct')
 
 var app = express();
 app.use(session({
@@ -35,6 +40,15 @@ app.use('/users', usersRouter);
 app.use('/signup',signupRouter);
 app.use('/login',signinRouter);
 app.use('/', dashboardRouter);
+
+app.use('/admin', adminDashboardRouter);
+app.use('/del', adminDelete);
+app.use('/', adminDashboardRouter);
+app.use('/', editProfileRouter);
+
+
+//Transaction related apis
+app.use('/', transactionRouter);
 
 app.use(accountRouter);
 const port = 5000;

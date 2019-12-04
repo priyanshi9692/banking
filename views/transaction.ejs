@@ -16,6 +16,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
   <link href=" css/bootstrap.min.css" rel="stylesheet" />
+  <link href=" css/selectdrop.css" rel="stylesheet" />
   <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
   <link href=" css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -43,14 +44,14 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="active ">
+          <li>
             <a href="/dashboard">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li>
-            <a href="/transaction">
+          <li class="active">
+            <a href="/add">
               <i class="nc-icon nc-cloud-upload-94"></i>
               <p>Account Transactions</p>
             </a>
@@ -74,14 +75,13 @@
 
 </div> -->
       <div class="content">
-
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="card card-stats">
               <div class="card-body ">
                 <div class="row">
                   <div class="col-5 col-md-4">
-                    <select id="locality-dropdown" name="locality" class="custom-select">
+                    <select id="locality-dropdown" name="locality"class="custom-select" >
                     </select>
                   </div>
                   <div class="col-7 col-md-8">
@@ -98,38 +98,96 @@
               </div>
             </div>
           </div>
-        </div>
-
-
-
+      </div>
 
 
         <div class="row">
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Transaction History</h5>
-                <div class="container-fluid">
-                  <div>
-                    <table id="transaction-info" class="cell-border" style="width:100%">
-                      <thead>
-                        <tr>
-
-                          <th>Transaction Time</th>
-                          <th>Receiver's Account Number</th>
-                          <th>Transaction Amount</th>
-                          <th>Is Recurring?</th>
-                        </tr>
-                      </thead>
-                    </table>
+                <h5 class="card-title">Transfer Money</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-5 pr-1">
+                          <div class="form-group">
+                    <label>Transaction Between Accounts</label>
+                    <select class="custom-select" id="transactionType">
+                        <option value="EXTERNAL">EXTERNAL</option>
+                        <option value="INTERNAL">INTERNAL</option>
+                        
+                    </select>
                   </div>
                 </div>
+              </div>
+                  <form action="javascript:void(0);" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                      <div class="col-md-5 pr-1">
+                        <div class="form-group">
+                          <label >Amount to Send</label>
+                          <input type="text" class="form-control" placeholder="Amount" id="amount" name ="amount">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5 pr-1">
+  
+                        <div class="form-group">
+                          <label>Account Number</label>
+                          <input type="text" class="form-control" placeholder="Account Number" id="toAccount" name ="toAccount">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5 pr-1">
+  
+                        <div class="form-group">
+                          <label id="routing">Routing Number</label>
+                          <input type="text" class="form-control" placeholder="Routing Number" id="toRoutingNum" name ="toRoutingNum">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 pr-1">
+                          <div class="form-group">
+                    <label>Frequency</label>
+                    <select class="custom-select" id="frequency">
+                        <option value="none">None</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="twicepermonth">Twice per Month</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="quarterly">Quarterly</option>
+                        <option value="yearly">Yearly</option>
+                        <option value="twiceperyear">Twice per Year</option>
+                       
+                        
+                    </select>
+                  </div>
+                </div>
+              </div>
+                  
+                    
+                    <div class="row">
+                        <div class="col-md-5 pr-1">
+                      <div class="update ml-auto mr-auto">
+                        <button type="submit" class="btn btn-primary btn-round" onclick="transaction();">Send Money</button>
+                      </div>
+                    </div>
+                    </div>
+                  </form>  
                 <p class="card-category"></p>
               </div>
               <div class="card-body ">
                 <table id="projects-table" class="cell-border" style="width:100%">
                   <thead>
                     <tr>
+
+                      <!-- <th>Project Name</th>
+                          
+                            <th>App Link</th>
+         
+                            <th>Documentation</th>
+                            <th>Test Data</th>
+                            <th>Test Cases</th> -->
 
                     </tr>
                   </thead>
@@ -231,11 +289,7 @@
   <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
   <script src=" demo/demo.js"></script>
   <script>
-    var table;
     $(document).ready(function () {
-      if (table !== undefined) $('#transaction-info').DataTable().destroy();
-
-
       let dropdown = $('#locality-dropdown');
 
       dropdown.empty();
@@ -246,67 +300,79 @@
       $.getJSON(url, function (data) {
         console.log(data.data[0].type);
         getBalance(data.data[0].type);
-        getTransactionHistory(data.data[0].type);
         for (var i = 0; i < data.data.length; i++) {
           dropdown.append($('<option></option>').attr('value', data.data[i].type).text(data.data[i].type));
         }
       });
 
-      $('#locality-dropdown').change(function () {
-        console.log($(this).find(":selected").val());
-        getBalance($(this).find(":selected").val());
-        getTransactionHistory($(this).find(":selected").val());
-      });
-
-
-      function getBalance(type) {
-        const url = '/getbalance?type=' + type;
-
-        // Populate dropdown with list of provinces
-        $.getJSON(url, function (data) {
-
-          console.log(data.balance);
-
-          $('#num').text(data.balance);
-
-
-        });
-      }
     });
 
-    function getTransactionHistory(type) {
-        $('#transaction-info').dataTable().fnDestroy();
 
-      $('#transaction-info').dataTable({
-        "ajax": {
-          "url": "transaction-info?acct_type=" + type,
-          "type": "GET",
-        },
-        "columns": [
-          { "data": "transaction_timestamp" },
-          { "data": "to_account_number",
-            "render": function (data, type, row) {
-              console.log(data%10000);
-              data =data%10000;
-           return "******" + data;
-            }
-           },
-          {"data":"transaction_amt"},
-          {"data":"frequency",
-            "render": function (data, type, row) {
-             if(data==null){
-              return "No";
-             } else {
-               return data;
-             }
-          
-            }}
-        ]
+
+    $('#locality-dropdown').change(function () {
+      console.log($(this).find(":selected").val());
+      getBalance($(this).find(":selected").val());
+
+    });
+   
+
+    function getBalance(type) {
+      const url = '/getbalance?type=' + type;
+
+      // Populate dropdown with list of provinces
+      $.getJSON(url, function (data) {
+
+        console.log(data.balance);
+
+        $('#num').text(data.balance);
+
+
       });
     }
+    function transaction(){
+      var transaction = {};
+      transaction.amount = document.getElementById("amount").value;
+      transaction.toAccount = document.getElementById("toAccount").value;
+      transaction.toRoutingNum = document.getElementById("toRoutingNum").value;
+      transaction.transactionType=$('#transactionType').find(":selected").val();
+      transaction.type=$('#locality-dropdown').find(":selected").val();
+      transaction.frequency=$('#frequency').find(":selected").val();
+      //this is nothing but the name of class/ id
+      var balance = $('#num').text();
+      //console.log(parseInt(balance,10));
+      if(parseFloat(balance,10)<parseFloat(transaction.amount,10)){
+        alert("Transaction can not be possible");
+      }
+      else{     
+   console.log(transaction);
+    $.ajax({url: "/transaction-money",
+    type: "POST",
+    data:transaction,
+    success: function(result){
+        if(result=="success"){
+          alert("Transaction Successful.");
+            window.location.href = 'http://localhost:5000/transaction';
+        } else{
+        alert("Issue with the transaction try sometime later.");
+        }
+    }
+});
+      }
+    }
 
+    $('#transactionType').change(function () {
+      console.log($(this).find(":selected").val());
+      if($(this).find(":selected").val()=="INTERNAL"){
+        
+        $("#toRoutingNum").hide();
+        $("#routing").hide();
+      }
+      else{
+        $("#toRoutingNum").show();
+        $("#routing").show();
+      }
 
-
+    });
   </script>
 
 </body>
