@@ -6,7 +6,7 @@
  4. Animesh Swain
 
 ## Tasks
-  * Priyanshi Jajoo: Frontend and Transaction(Internal/External) APIs, Customer Edit Profile API, Customer Dashboard API
+  * Priyanshi Jajoo: Frontend and Transaction(Internal/External) APIs, Customer Edit Profile API, Customer Dashboard API. Cloud Deployment.
   * Robert Campbell: 
   * Wei He:
   * Animesh Swain: 4
