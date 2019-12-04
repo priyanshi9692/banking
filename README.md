@@ -12,7 +12,7 @@
   * Animesh Swain: 4
 
 ## XP Core Values Implemented
-  * Priyanshi Jajoo: Courage
+  * Priyanshi Jajoo: [Courage](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/XP_Core_Values/Courage.md)
   * Robert Campbell: Communication
   * Wei He: Simplicity
   * Animesh Swain: Feedback
