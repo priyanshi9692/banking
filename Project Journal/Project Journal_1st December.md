@@ -1,10 +1,10 @@
 # Project Scrum Journal
-## Weekly Scrum Report - 11/27/19
+## Weekly Scrum Report - 12/01/19
 
 * Priyanshi
-  1. I shall be implementing transactions for the user.
-  2. Finalised the flow of application.
-  3. Implementing edit profile option for user.
+  1. Implemented internal transactions for user.
+  2. Implemented external transactions for user.
+  3. Implemented edit profile option for user.
 
 * Wei
   
@@ -22,7 +22,7 @@
   3. Created Architecture Diagram.
   4. Created Component and Deployment Diagram.
   5. Team decided to implement view and search functionality.
-  6. Sprint planning meeting set for 12/01/19.
+  6. Sprint planning meeting set for 12/04/19.
 * Backend
   1. Created Node APIs for GET/POST calls.
   2. Decided to create Node APIs for DELETE calls.
