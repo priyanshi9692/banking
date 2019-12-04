@@ -18,6 +18,8 @@
   * Animesh Swain: Feedback
 
 ## [Sprint Task Sheet](https://docs.google.com/spreadsheets/d/1F4bL0JAhROn38GWwjtmzH_jjgL__Yx4RxtkrftcPAjE/edit#gid=0)
+
+## [UI Wireframes](https://github.com/rcampbell95/CMPE-202-Project/tree/master/UI_Wireframes)
   
 ## Development stack diagram
 ![Development_stack](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/Diagrams/Development%20Stack%20.jpeg)
@@ -27,9 +29,6 @@
 ![Component Design Diagram](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/Diagrams/Banking%20System_%20Component%20design.jpeg)
 ## Deployment Diagram
 ![Deployment Diagram](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/Diagrams/Banking%20System_%20Deployment%20Diagram.jpeg)
-
-##[UI Wireframes](https://github.com/rcampbell95/CMPE-202-Project/tree/master/UI_Wireframes)
-
 
 # Backend
 In routes folder we will write backend APIs, look at the example (routes/index.js).
