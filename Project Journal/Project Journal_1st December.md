@@ -7,7 +7,9 @@
   3. Implemented edit profile option for user.
 
 * Wei
-  
+  1. Updated format of account number.
+  2. Updated logic for adding account: One customer can only have one account for each type
+  3. To Do: Clear code and start integration.
 
 * Roberto
 
