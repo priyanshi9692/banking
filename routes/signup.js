@@ -32,7 +32,7 @@ router.post('/', function(req,res, next) {
     newCustomer.firstname = req.body.firstname;
     newCustomer.lastname = req.body.lastname;
     newCustomer.bdate = req.body.bdate;
-    newCustomer.username=req.body.username;
+   
     newCustomer.ssn = req.body.ssn;
     newCustomer.email = req.body.email;
     newCustomer.password = req.body.password;
@@ -40,13 +40,13 @@ router.post('/', function(req,res, next) {
     newCustomer.city = req.body.city;
     newCustomer.state = req.body.state;
     newCustomer.zipcode = req.body.zipcode;
-    newCustomer.account_type=req.body.account_type;
-    if(req.body.account_type=="savings"){
-        newCustomer.account="sav"+Math.floor(Math.random() * 100000);
-      }
-    else{
-        newCustomer.account="chk"+Math.floor(Math.random()* 100000);
-      }
+    // newCustomer.account_type=req.body.account_type;
+    // if(req.body.account_type=="savings"){
+    //     newCustomer.account="sav"+Math.floor(Math.random() * 100000);
+    //   }
+    // else{
+    //     newCustomer.account="chk"+Math.floor(Math.random()* 100000);
+    //   }
     var con = mysql.createConnection(database);
     con.connect(function(err) {
     if (err) throw err;
@@ -58,13 +58,13 @@ router.post('/', function(req,res, next) {
         console.log("New Customer Data inserted successfully");
         var client={};
         client.name = req.body.firstname;
-        client.fullname = req.body.firstname +" " + req.body.lastname;
-        client.username=req.body.username;
+        client.fullname = req.body.firstname +" "+ req.body.lastname;
+      
         client.email=req.body.email;
         console.log(client);
         req.session.user = client;
       }
-      res.redirect('/dashboard');
+      res.redirect('/addacct');
     });
   });
   });
