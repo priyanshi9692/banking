@@ -21,10 +21,6 @@ var transporter = nodemailer.createTransport({
   });
 
 router.get('/addacct', function(req, res, next) {
-    // ************* need to remove **********
-    req.session.email = 'breehope@me.com'
-    // ***************************************
-
     // Get existing account types for customer
     var con = mysql.createConnection(database);
     con.connect(function(err) {
@@ -41,11 +37,9 @@ router.get('/addacct', function(req, res, next) {
             console.log("Got existing account types for customer.");
             var exg_accts = result.map(x => x.acct_type);
             con.end()
-            //******* need to unmark */
-            // if (req.session.email == null) {
-            //     return res.sendStatus(403);
-            // }
-            // // ***********************************
+            if (req.session.email == null) {
+                return res.sendStatus(403);
+            }
             res.render("addacct", { title: 'Banking System - Add Account', exg_accts: exg_accts })
         });
     });
@@ -98,8 +92,7 @@ router.post('/addacct', function(req, res, next) {
                 newAcctNum = result[0].acct_num
                 con.end();
 
-                mailOptions.to = "wei.he@sjsu.edu";
-                // mailOptions.to = req.session.email + "; wei.he@sjsu.edu";
+                mailOptions.to = req.session.email + "; wei.he@sjsu.edu";
                 mailOptions.subject = "Congratulations!You opened a new " + newAcct.acct_type + " account!";
                 mailOptions.html = "Dear customer, " + "<br /> <br /> "
                     + "Your new <b>" + newAcct.acct_type + "</b> account number is <b>" + newAcctNum + "</b>. <br/><br /> "
@@ -146,8 +139,7 @@ router.post('/closeacct', function(req, res, next) {
 
             con.end()
 
-            mailOptions.to = "wei.he@sjsu.edu";
-            // mailOptions.to = closingAcct.email + "; wei.he@sjsu.edu";
+            mailOptions.to = closingAcct.email + "; wei.he@sjsu.edu";
             mailOptions.subject = "Your " + closingAcct.acct_type + " account " + closingAcct.acct_num + " has been closed successfully!";
             mailOptions.html = "Hi <b> dear customer</b>, " + "<br /> <br /> Your "
                             + closingAcct.acct_type + " account " + closingAcct.acct_num + " has been closed successfully! <br/><br /> Regards, <br /> CMPE-202 Group 3";
