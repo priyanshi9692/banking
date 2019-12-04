@@ -27,3 +27,4 @@
   
 * Future goals
   1. Team will be designing customer/admin dashboard with all the functionalities.
+  2. Team will be deploying application on cloud.

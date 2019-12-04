@@ -9,13 +9,13 @@
   * Priyanshi Jajoo: Frontend and Transaction(Internal/External) APIs, Customer Edit Profile API, Customer Dashboard API
   * Robert Campbell: 
   * Wei He:
-  * Animesh Swain: 
+  * Animesh Swain: 4
 
 ## XP Core Values Implemented
   * Priyanshi Jajoo: Courage
   * Robert Campbell: Communication
   * Wei He: Simplicity
-  * Animesh Swain:
+  * Animesh Swain: Feedback
 
 ## [Sprint Task Sheet](https://docs.google.com/spreadsheets/d/1F4bL0JAhROn38GWwjtmzH_jjgL__Yx4RxtkrftcPAjE/edit#gid=0)
   
