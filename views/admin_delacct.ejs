@@ -194,8 +194,8 @@
                               console.log(balance);
                               let if_closed = account.if_closed === null ? "True" : "False"
                               console.log(if_closed);
-                              let table_row = `<td>${account.email}</td>
-                                               <td>${account_number}</td>
+                              let table_row = `<td>${account_number}</td>
+                              <td>${account.email}</td>
                                                <td>${account_type}</td>
                                                <td>${balance}</td>
                                                <td>${if_closed}</td>`
@@ -216,9 +216,9 @@
                 <div class="card-body ">
                   <table id="projects-table" class="cell-border" style="width:100%">
                     <thead>
-                        <tr>
-                            <th>Account Email</th>
-                            <th>Account Number</th>
+                        <tr>                            
+                          <th>Account Number</th>
+                          <th>Customer email</th>
                             <th>Account Type</th>
                             <th>Balance</th>
                             <th>Is Active</th>
