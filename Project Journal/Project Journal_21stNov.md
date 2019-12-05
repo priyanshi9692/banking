@@ -12,7 +12,8 @@
   3. TODO: Integration.
 
 * Roberto
-
+  1. Implemented UI for admin front page
+  2. Added admin login
 
 * Animesh
   1. IMplement retrieval of transactions.

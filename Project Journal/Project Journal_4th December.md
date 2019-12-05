@@ -10,7 +10,8 @@
   2. Integration of application.
   3. Updated documents.
 * Roberto
-
+  1. Miscellaneous bug fixes
+  2. UI polishing and integration 
 
 * Animesh
 
