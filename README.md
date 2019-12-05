@@ -15,7 +15,7 @@
   * Priyanshi Jajoo: [Courage](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/XP_Core_Values/Courage.md)
   * Robert Campbell: Communication
   * Wei He: [Simplicity](XP_Core_Values/Simplicity.md)
-  * Animesh Swain: Feedback
+  * Animesh Swain: [Feedback](XP_Core_Values/Feedback.md)
 
 ## [Sprint Task Sheet](https://docs.google.com/spreadsheets/d/1F4bL0JAhROn38GWwjtmzH_jjgL__Yx4RxtkrftcPAjE/edit#gid=0)
 
