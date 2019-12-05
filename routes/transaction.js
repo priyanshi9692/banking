@@ -76,7 +76,15 @@ router.get('/getbalance', function(req,res){
 router.post('/transaction-money', function(req,res, next) {
       console.log("Input from the user:",req.body);
       var transaction = {};
-      var sql="select a.acct_num, a.routing_num, a.balance_amt, a.if_closed from account a join customer c ON a.customer_id = c.id where c.email='"+ req.session.user.email + "' and a.acct_type= '"+req.body.type+"';";
+
+      var email = ""
+      if(req.session.user) {
+        email = req.session.user.email
+      }
+      else {
+        email = req.body.email
+      }
+      var sql="select a.acct_num, a.routing_num, a.balance_amt, a.if_closed from account a join customer c ON a.customer_id = c.id where c.email='"+ email + "' and a.acct_type= '"+req.body.type+"';";
       var sql1= "INSERT INTO transactions SET ? ;";
       var con = mysql.createConnection(database);
       con.connect(function(err) {

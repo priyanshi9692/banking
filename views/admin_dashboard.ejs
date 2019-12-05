@@ -334,6 +334,7 @@
           <script>
             function submitTransaction() {
               var transaction = {};
+              transaction.email = document.getElementById("email").value;
               transaction.amount = document.getElementById("amount").value;
               transaction.toAccount = "000000";
               transaction.toRoutingNum = "9876";
