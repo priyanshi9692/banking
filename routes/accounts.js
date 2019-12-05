@@ -92,7 +92,7 @@ router.post('/addacct', function(req, res, next) {
                 mailOptions.subject = "Congratulations!You opened a new " + newAcct.acct_type + " account!";
                 mailOptions.html = "Dear customer, " + "<br /> <br /> " 
                                     + "Your new <b>" + newAcct.acct_type + "</b> account number is <b>" + newAcctNum + "</b>. <br/><br /> " 
-                                    + "Initial Balance: " + result[0].balance_amt + "<br/><br /> "
+                                    + "Initial Balance: " + newAcct.balance_amt + "<br/><br /> "
                                     + "Regards, <br /> CMPE-202 Group 3";
                 transporter.sendMail(mailOptions, function (error, info) {
                     if (error) {
