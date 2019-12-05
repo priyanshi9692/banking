@@ -12,7 +12,8 @@
   3. To Do: Update format of account number
 
 * Roberto
-
+  1. Added signup to admin dashboard
+  2. Cleaned up UI on home page to remove signup
 
 * Animesh
 

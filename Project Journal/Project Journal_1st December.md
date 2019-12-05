@@ -12,7 +12,8 @@
   3. To Do: Clear code and start integration.
 
 * Roberto
-
+  1. Added account deletion page with user search
+  2. Show all user accounts, both deleted and active
 
 * Animesh
 
