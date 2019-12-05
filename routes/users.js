@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
   con.connect(function(err) {
      if (err) throw err;
      console.log("Connected!");
-     var sql = "Select * from account where customer_id = ?";
+     var sql = "Select * from account a JOIN customer c ON a.customer_id=c.id where a.customer_id= ?;";
      con.query(sql, id, function(err,result){
        if (err) throw err;
        else {

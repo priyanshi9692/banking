@@ -20,28 +20,30 @@ router.get('/verify', function(req,res, next) {
       if (err) throw err;
       console.log(req.query);
 
-      var sql = "Select * from customer;";
+      var sql = `Select * from customer where email='${req.query.username}'`;
       con.query(sql,function(err,result){
         if (err) throw err;
         else {
+          console.log(req.body.username);
             for(var i= 0; i<result.length; i++){
-                //console.log(req.query.username);
-                if(result[1].email=="robertgcampbell95@gmail.com" && result[i].password=="password") {
+                
+                if(result[0].email=="robertgcampbell95@gmail.com" && result[0].password=="password") {
                   return res.send("admin")
                 }
-                if(result[i].email==req.query.username && result[i].password==req.query.password){
+                else if(result[0].email==req.query.username && result[0].password==req.query.password){
                   var client ={};
                   client.name = result[i].firstname;
-                  client.fullname = result[i].firstname +" " + result[i].lastname;
+                  client.fullname = result[i].firstname +"  " + result[i].lastname;
                   client.email=result[i].email;
                   console.log(client);
                   req.session.user = client;
-               return res.send("success");
-                } 
+                  return res.send("success"); 
+                }
+                
             }
-            con.end();
-            return res.send("Password/Username is incorrect. Please Try again.");
-        }
+            con.end();                 
+            return res.send("Wrong username or Password.");  
+       }
       })
     });
   });

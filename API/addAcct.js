@@ -1,3 +1,25 @@
+var express = require('express');
+var router = express.Router();
+var mysql = require('mysql');
+var db = require('../db/db_config');
+var nodemailer = require('nodemailer');
+var mailOptions = {}
+var transporter = nodemailer.createTransport({
+    // service: 'gmail',
+    // auth: {
+    // //   user: 'wei.he@sjsu.edu',
+    // //   pass: 'Leonardo020513'
+    //     user: 'jack.triverson@gmail.com',
+    //     pass: '48*atx86'
+    host: "smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+        user: "6783cd77b2b829",
+        pass: "fa1a2b3f8d955f"
+    }
+  });
+
+var database = db.DB;
 router.post('/addacct', function(req, res, next) {
     if (req.session.customer_id == null) {
         return res.sendStatus(403);
@@ -39,8 +61,8 @@ router.post('/addacct', function(req, res, next) {
             else {
                 newAcctNum = result[0].acct_num
 
-                mailOptions.to = "wei.he@sjsu.edu";
-                // mailOptions.to = customer_email + "; wei.he@sjsu.edu";
+                // mailOptions.to = "wei.he@sjsu.edu";
+                mailOptions.to = customer_email + "; wei.he@sjsu.edu";
                 mailOptions.subject = "Congratulations!!!You opened a new " + newAcct.acct_type + " account.";
                 mailOptions.html = "Hi <b> dear customer</b>, " + "<br /> <br /> Your new " + newAcct.acct_type + " account number is " + newAcctNum + ". <br/><br /> Regards, <br /> CMPE-202 Group 3";
                 transporter.sendMail(mailOptions, function (error, info) {
@@ -64,3 +86,4 @@ router.post('/addacct', function(req, res, next) {
     // db.close();
     // }
 })
+module.exports = router;
