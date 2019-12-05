@@ -20,6 +20,7 @@ router.get('/editprofile', function(req, res, next) {
           else {
             console.log(result);
           }
+          con.end();
           res.send(result);
         });
       });
@@ -51,7 +52,9 @@ router.get('/editprofile', function(req, res, next) {
         console.log("Customer Data Updated");
         req.session.user.fullname=newCustomer.firstname+" "+newCustomer.lastname;
       }
+      
       res.redirect('/editprofile');
+      con.end();
     });
   });
   });

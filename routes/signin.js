@@ -36,6 +36,7 @@ router.get('/verify', function(req,res, next) {
                return res.send("success");
                 } 
             }
+            con.end();
             return res.send("Password/Username is incorrect. Please Try again.");
         }
       })
