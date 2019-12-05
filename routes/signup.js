@@ -40,13 +40,7 @@ router.post('/', function(req,res, next) {
     newCustomer.city = req.body.city;
     newCustomer.state = req.body.state;
     newCustomer.zipcode = req.body.zipcode;
-    // newCustomer.account_type=req.body.account_type;
-    // if(req.body.account_type=="savings"){
-    //     newCustomer.account="sav"+Math.floor(Math.random() * 100000);
-    //   }
-    // else{
-    //     newCustomer.account="chk"+Math.floor(Math.random()* 100000);
-    //   }
+   
     var con = mysql.createConnection(database);
     con.connect(function(err) {
     if (err) throw err;
@@ -63,8 +57,10 @@ router.post('/', function(req,res, next) {
         client.email=req.body.email;
         console.log(client);
         req.session.user = client;
+        
       }
       res.redirect('/addacct');
+      con.end();
     });
   });
   });

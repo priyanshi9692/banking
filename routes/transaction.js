@@ -23,10 +23,11 @@ router.get('/transaction', function(req, res, next) {
 
 /* Get all accounts of customer */
 router.get('/getuseraccounts', function(req,res){
-var sql = "select * from account a join customer c ON a.customer_id = c.id where c.email='"+ req.session.user.email + "';";
+var sql = "select * from account a join customer c ON a.customer_id = c.id where c.email='"+ req.session.user.email + "' and a.if_closed is null ;";
 var info ={
     "data": []
 }
+console.log(sql);
 var con = mysql.createConnection(database);
     con.connect(function(err) {
       if (err) throw err;
@@ -43,7 +44,9 @@ var con = mysql.createConnection(database);
             
         }
         console.log(info.data);
+        con.end();
         return res.send(info);
+        
       });
     });
 });
@@ -64,6 +67,7 @@ router.get('/getbalance', function(req,res){
                 info=account;
             }
             console.log(info);
+            con.end();
             return res.send(info);
           });
         });
@@ -72,7 +76,7 @@ router.get('/getbalance', function(req,res){
 router.post('/transaction-money', function(req,res, next) {
       console.log("Input from the user:",req.body);
       var transaction = {};
-      var sql="select acct_num,routing_num,balance_amt from account a join customer c ON a.customer_id = c.id where c.email='"+ req.session.user.email + "' and a.acct_type= '"+req.body.type+"';";
+      var sql="select a.acct_num, a.routing_num, a.balance_amt, a.if_closed from account a join customer c ON a.customer_id = c.id where c.email='"+ req.session.user.email + "' and a.acct_type= '"+req.body.type+"';";
       var sql1= "INSERT INTO transactions SET ? ;";
       var con = mysql.createConnection(database);
       con.connect(function(err) {
@@ -80,7 +84,7 @@ router.post('/transaction-money', function(req,res, next) {
       console.log("Connected to DB!");
       con.query(sql,function(err,result){
         if (err) throw err;
-        else {
+          else{
           transaction.from_account_number=result[0].acct_num;
           transaction.from_routing_number=result[0].routing_num;
           transaction.transaction_amt = req.body.amount;
@@ -128,6 +132,7 @@ router.post('/transaction-money', function(req,res, next) {
                         );
                           } else {
                             res.send("success");
+                            con1.end();
                           }
                        },
                       function(error) { /* handle an error */ }
@@ -165,6 +170,7 @@ var con = mysql.createConnection(database);
             else {
         console.log("Successfully updated");
         resolve("success");
+        con.end();
       }
     });
   });
@@ -187,6 +193,7 @@ var sql = "UPDATE account set balance_amt= balance_amt+ "+addBalance+" where acc
              else {
          console.log("Successfully updated");
          resolve("success");
+         con.end();
        }
      });
    });
@@ -209,6 +216,7 @@ var sql = "UPDATE account set balance_amt= balance_amt+ "+addBalance+" where acc
              else {
          console.log("Data Inserted Successfully");
          resolve("success");
+         con.end();
        }
      });
    });
@@ -231,6 +239,7 @@ var sql = "UPDATE account set balance_amt= balance_amt+ "+addBalance+" where acc
     }
 
     var sql = "SELECT a.acct_type, a.balance_amt, t.to_account_number, t.transaction_amt, t.from_account_number, t.transaction_timestamp, r.frequency FROM customer c JOIN account a ON c.id=a.customer_id JOIN transactions t ON t.from_account_number=a.acct_num LEFT OUTER JOIN recurring_payments r ON t.transaction_id=r.transaction_id WHERE c.email='" + email + "' and a.acct_type='" + req.query.acct_type +"';";
+
     console.log(sql);
       var info = {
       "data": []

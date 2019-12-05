@@ -259,6 +259,7 @@
 
       // Populate dropdown with list of provinces
       $.getJSON(url, function (data) {
+       
 
         console.log(data.balance);
 
@@ -288,7 +289,7 @@
     data:transaction,
     success: function(result){
         if(result=="success"){
-          alert("Transaction Successful.");
+          alert("Transaction is Successful.");
             window.location.href = '/transaction';
         } else{
         alert("Issue with the transaction try sometime later.");
