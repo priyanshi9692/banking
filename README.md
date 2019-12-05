@@ -8,7 +8,7 @@
 ## Tasks
   * Priyanshi Jajoo: Frontend and Transaction(Internal/External) APIs, Customer Edit Profile API, Customer Dashboard API. Cloud Deployment.
   * Robert Campbell: 
-  * Wei He: Frontend and Adding Account API, Closing Account API.
+  * Wei He: Frontend and Adding Account API, Closing Account API, Notifications by Email.
   * Animesh Swain: 4
 
 ## XP Core Values
