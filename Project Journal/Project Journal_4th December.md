@@ -4,9 +4,11 @@
 * Priyanshi
   1. Integration of application.
   2. Deployment on cloud.
-* Wei
   
-
+* Wei
+  1. Unified page style.
+  2. Integration of application.
+  3. Updated documents.
 * Roberto
 
 

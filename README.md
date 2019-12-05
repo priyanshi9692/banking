@@ -8,13 +8,13 @@
 ## Tasks
   * Priyanshi Jajoo: Frontend and Transaction(Internal/External) APIs, Customer Edit Profile API, Customer Dashboard API. Cloud Deployment.
   * Robert Campbell: 
-  * Wei He:
+  * Wei He: Frontend and Adding Account API, Closing Account API, Notifications by Email.
   * Animesh Swain: 4
 
 ## XP Core Values
   * Priyanshi Jajoo: [Courage](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/XP_Core_Values/Courage.md)
   * Robert Campbell: Communication
-  * Wei He: Simplicity
+  * Wei He: [Simplicity](XP_Core_Values/Simplicity.md)
   * Animesh Swain: Feedback
 
 ## [Sprint Task Sheet](https://docs.google.com/spreadsheets/d/1F4bL0JAhROn38GWwjtmzH_jjgL__Yx4RxtkrftcPAjE/edit#gid=0)
