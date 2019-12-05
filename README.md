@@ -14,7 +14,7 @@
 ## XP Core Values
   * Priyanshi Jajoo: [Courage](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/XP_Core_Values/Courage.md)
   * Robert Campbell: Communication
-  * Wei He: [Simplicity](https://github.com/rcampbell95/CMPE-202-Project/XP_Core_Values/Simplicity.md)
+  * Wei He: [Simplicity](XP_Core_Values/Simplicity.md)
   * Animesh Swain: Feedback
 
 ## [Sprint Task Sheet](https://docs.google.com/spreadsheets/d/1F4bL0JAhROn38GWwjtmzH_jjgL__Yx4RxtkrftcPAjE/edit#gid=0)
