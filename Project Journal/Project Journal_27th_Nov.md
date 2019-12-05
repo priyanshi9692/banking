@@ -7,7 +7,9 @@
   3. Implementing edit profile option for user.
 
 * Wei
-  
+  1. Implemented email notification feature for adding and closing account.
+  2. Got customer info from session.
+  3. To Do: Update format of account number
 
 * Roberto
 

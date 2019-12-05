@@ -116,7 +116,8 @@ padding:1px;
       });
 
       if (response.status == 200) {
-        alert(obj['accttype'] + " account successfully opened!\nThe account number has been sent to your email.")
+        alert(obj['accttype'] + " account successfully opened!\nThe account number has been sent to customer's email.")
+        window.location.replace("/dashboard");
       } else {
         alert("Failed")
       }
