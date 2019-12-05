@@ -15,6 +15,7 @@
 
 
 * Animesh
+  1. IMplement retrieval of transactions.
 
 ## Meeting Summary
 
