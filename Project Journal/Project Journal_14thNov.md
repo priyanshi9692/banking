@@ -17,6 +17,7 @@
   1. Create branch for admin dashboard 
 
 * Animesh
+  1. Design and create transactions table
 
 ## Meeting Summary
 
