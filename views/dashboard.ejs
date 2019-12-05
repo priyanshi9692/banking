@@ -117,6 +117,7 @@
 
                           <th>Transaction Time</th>
                           <th>Receiver's Account Number</th>
+                          <th>Sender's Account Number</th>
                           <th>Transaction Amount</th>
                           <th>Is Recurring?</th>
                         </tr>
@@ -226,7 +227,14 @@
             "render": function (data, type, row) {
               console.log(data%10000);
               data =data%10000;
-           return "******" + data;
+           return "****" + data;
+            }
+           },
+           { "data": "from_account_number",
+            "render": function (data, type, row) {
+              console.log(data%10000);
+              data =data%10000;
+           return "****" + data;
             }
            },
           {"data":"transaction_amt"},

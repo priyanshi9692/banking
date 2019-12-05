@@ -140,14 +140,9 @@ router.post('/closeacct', function(req, res, next) {
 
             con.end()
 
-            // if (result.changedRows === 0)  {
-            //     res.statusMessage = "No account found!"
-            //     res.status(500).end()
-            //     return
-            // }
+       
 
             mailOptions.to = req.session.user.email + "; wei.he@sjsu.edu";
-            // mailOptions.to = closingAcct.email + "; wei.he@sjsu.edu";
             mailOptions.subject = "Your " + closingAcct.acct_type + " account " + closingAcct.acct_num + " has been closed successfully!";
             mailOptions.html = "Hi <b> dear customer</b>, " + "<br /> <br /> Your "
                             + closingAcct.acct_type + " account " + closingAcct.acct_num + " has been closed successfully! <br/><br /> Regards, <br /> CMPE-202 Group 3";

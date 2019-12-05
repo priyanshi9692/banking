@@ -230,7 +230,7 @@ var sql = "UPDATE account set balance_amt= balance_amt+ "+addBalance+" where acc
     if (err) throw err;
     console.log("QUERY",req.query.acct_type);
     //console.log(database);
-    var sql = "SELECT a.acct_type, a.balance_amt, t.to_account_number, t.transaction_amt, t.transaction_timestamp, r.frequency FROM customer c JOIN account a ON c.id=a.customer_id JOIN transactions t ON t.from_account_number=a.acct_num LEFT OUTER JOIN recurring_payments r ON t.transaction_id=r.transaction_id WHERE c.email='"+ req.session.user.email + "' and a.acct_type='" + req.query.acct_type +"';";
+    var sql = "SELECT a.acct_type, a.balance_amt, t.to_account_number,t.from_account_number, t.transaction_amt, t.transaction_timestamp, r.frequency FROM customer c JOIN account a ON c.id=a.customer_id JOIN transactions t ON t.from_account_number=a.acct_num LEFT OUTER JOIN recurring_payments r ON t.transaction_id=r.transaction_id WHERE c.email='"+ req.session.user.email + "' and a.acct_type='" + req.query.acct_type +"';";
     console.log(sql);
       var info = {
       "data": []
