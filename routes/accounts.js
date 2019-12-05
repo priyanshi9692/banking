@@ -20,13 +20,9 @@ var transporter = nodemailer.createTransport({
     }
   });
 
-// let customerInfo = {}
-// let customer_id = ""
-// let routing_num = ""
-// let customer_email = ""
 router.get('/addacct', function(req, res, next) {
     // ************* need to remove **********
-       req.session.email = 'wei.he@sjsu.edu'
+    //    req.session.user.email; 
     // ***************************************
     // customer_id = req.body.customer_id
     // routing_num = req.body.routing_num
@@ -40,7 +36,7 @@ router.get('/addacct', function(req, res, next) {
 });
 
 router.post('/addacct', function(req, res, next) {
-    if (req.session.email == null) {
+    if (req.session.user.email == null) {
         return res.sendStatus(403);
     }
     console.log(req.body);
@@ -59,7 +55,7 @@ router.post('/addacct', function(req, res, next) {
         // Get customer ID by email
         var sql = "SELECT id "
                 + "FROM customer "
-                + "WHERE email = '" + req.session.email + "'";
+                + "WHERE email = '" + req.session.user.email + "'";
         con.query(sql,function(err,result){
             if (err) return res.sendStatus(500)
             else {
@@ -74,7 +70,7 @@ router.post('/addacct', function(req, res, next) {
                 con.query(sql,function(err,result){
                     if (err) return res.sendStatus(500)
                     else {
-                    console.log("Customer " + newAcct.customer_id + " opened a new " + newAcct.acct_type + " account.");
+                    console.log("Customer " + customer_id  + " opened a new " + newAcct.acct_type + " account.");
                     }
                 });
             }
@@ -91,7 +87,7 @@ router.post('/addacct', function(req, res, next) {
                 newAcctNum = result[0].acct_num
                 con.end();
 
-                mailOptions.to = "wei.he@sjsu.edu";
+                mailOptions.to = req.session.user.email + "; wei.he@sjsu.edu";
                 // mailOptions.to = req.session.email + "; wei.he@sjsu.edu";
                 mailOptions.subject = "Congratulations!You opened a new " + newAcct.acct_type + " account!";
                 mailOptions.html = "Dear customer, " + "<br /> <br /> " 
@@ -124,7 +120,7 @@ router.post('/closeacct', function(req, res, next) {
     var closingAcct = {};
     closingAcct.acct_num = parseInt(req.body.acct_num);
     closingAcct.acct_type = req.body.acct_type;
-    closingAcct.email = req.session.email;
+    closingAcct.email = req.session.user.email;
     console.log(JSON.stringify(closingAcct));
 
     var con = mysql.createConnection(database);
@@ -150,7 +146,7 @@ router.post('/closeacct', function(req, res, next) {
             //     return
             // }
 
-            mailOptions.to = "wei.he@sjsu.edu";
+            mailOptions.to = req.session.user.email + "; wei.he@sjsu.edu";
             // mailOptions.to = closingAcct.email + "; wei.he@sjsu.edu";
             mailOptions.subject = "Your " + closingAcct.acct_type + " account " + closingAcct.acct_num + " has been closed successfully!";
             mailOptions.html = "Hi <b> dear customer</b>, " + "<br /> <br /> Your "
