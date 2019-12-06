@@ -13,7 +13,7 @@
 
 ## XP Core Values
   * Priyanshi Jajoo: [Courage](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/XP_Core_Values/Courage.md)
-  * Robert Campbell: Communication
+  * Robert Campbell: [Communication](XP_Core_Values/Communication.md)
   * Wei He: [Simplicity](XP_Core_Values/Simplicity.md)
   * Animesh Swain: [Feedback](XP_Core_Values/Feedback.md)
 
