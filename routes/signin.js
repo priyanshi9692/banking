@@ -37,7 +37,7 @@ router.get('/verify', function(req,res, next) {
                   client.email=result[i].email;
                   console.log(client);
                   req.session.user = client;
-                  return res.send("success"); 
+                  return res.send("success");
                 }
                 
             }
