@@ -47,7 +47,7 @@ Run the following commands
 # Database Connection 
 1. db_config contains the mysql connection string.
 2. create database named 'banking' in your local mysql instance.
-3. Update this string in db_config file {host: "localhost",user: "root",password: "*******",database:"banking"}
+3. Update this string in db_config file {host: "online-bank.c5khsw9sivuf.us-west-2.rds.amazonaws.com",user: "admin",password: "*******",database:"banking"}
 
 # Running the App
 1. npm i
