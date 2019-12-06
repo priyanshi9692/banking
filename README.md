@@ -7,7 +7,7 @@
 
 ## Tasks
   * Priyanshi Jajoo: Frontend and Transaction(Internal/External) APIs, Customer Edit Profile API, Customer Dashboard API. Cloud Deployment.
-  * Robert Campbell: 
+  * Robert Campbell: Frontend UI for Admin and Admin Dashboard and Transaction APIs.
   * Wei He: Frontend and Adding Account API, Closing Account API, Notifications by Email.
   * Animesh Swain: Database connectivity,database management,MySQL queries
 
