@@ -55,7 +55,8 @@ Run the following commands
 
 # Go to browser and paste localhost:5000
 
-# Applictaion is running on cloud URI is: http://ec2-13-58-133-124.us-east-2.compute.amazonaws.com:5000/
+# Applictaion is running on cloud URI is: 
+http://ec2-13-58-133-124.us-east-2.compute.amazonaws.com:5000/
 
 
 
