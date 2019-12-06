@@ -9,7 +9,7 @@
   * Priyanshi Jajoo: Frontend and Transaction(Internal/External) APIs, Customer Edit Profile API, Customer Dashboard API. Cloud Deployment.
   * Robert Campbell: 
   * Wei He: Frontend and Adding Account API, Closing Account API, Notifications by Email.
-  * Animesh Swain: 4
+  * Animesh Swain: Database connectivity,database management,MySQL queries
 
 ## XP Core Values
   * Priyanshi Jajoo: [Courage](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/XP_Core_Values/Courage.md)
