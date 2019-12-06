@@ -16,6 +16,7 @@
   2. Cleaned up UI on home page to remove signup
 
 * Animesh
+  1. Dynamic queries to retrieve data from database for GUI display.
 
 ## Meeting Summary
 
