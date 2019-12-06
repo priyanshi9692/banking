@@ -16,7 +16,8 @@
   2. Show all user accounts, both deleted and active
 
 * Animesh
-
+  1. Updated account table schema
+  2. Updated customer table schema
 ## Meeting Summary
 
 * Project Management
