@@ -9,7 +9,7 @@
   * Priyanshi Jajoo: Frontend and Transaction(Internal/External) APIs, Customer Edit Profile API, Customer Dashboard API. Cloud Deployment.
   * Robert Campbell: 
   * Wei He: Frontend and Adding Account API, Closing Account API, Notifications by Email.
-  * Animesh Swain: 4
+  * Animesh Swain: Database connectivity,database management,MySQL queries
 
 ## XP Core Values
   * Priyanshi Jajoo: [Courage](https://github.com/rcampbell95/CMPE-202-Project/blob/dev/XP_Core_Values/Courage.md)
@@ -55,7 +55,7 @@ Run the following commands
 
 # Go to browser and paste localhost:5000
 
-# Applictaion is running on cloud URI is: 
+# Applictaion is running on cloud URI is: http://ec2-13-58-133-124.us-east-2.compute.amazonaws.com:5000/
 
 
 
