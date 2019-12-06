@@ -25,13 +25,13 @@ router.get('/addacct', function(req, res, next) {
         var sql = "SELECT DISTINCT acct_type "
                 + "FROM account "
                 + "WHERE if_closed IS NULL "
-                + "AND customer_id = (SELECT id FROM customer WHERE email = '" + req.session.email + "');";
+                + "AND customer_id = (SELECT id FROM customer WHERE email = '" + req.session.user.email + "');";
         con.query(sql,function(err,result){
             if (err) return res.sendStatus(500)
             console.log("Got existing account types for customer.");
             var exg_accts = result.map(x => x.acct_type);
             con.end()
-            if (req.session.email == null) {
+            if (req.session.user.email == null) {
                 return res.sendStatus(403);
             }
             res.render("addacct", { title: 'Banking System - Add Account', exg_accts: exg_accts })
@@ -40,7 +40,7 @@ router.get('/addacct', function(req, res, next) {
 });
 
 router.post('/addacct', function(req, res, next) {
-    if (req.session.email == null) {
+    if (req.session.user.email == null) {
         return res.sendStatus(403);
     }
     console.log(req.body);
@@ -60,7 +60,7 @@ router.post('/addacct', function(req, res, next) {
         // Get customer ID by email
         var sql = "SELECT id "
                 + "FROM customer "
-                + "WHERE email = '" + req.session.email + "';";
+                + "WHERE email = '" + req.session.user.email + "';";
         executeSql(con, sql)
             .then((result) => {
                 console.log(result[0].id);
@@ -86,7 +86,7 @@ router.post('/addacct', function(req, res, next) {
                 newAcctNum = result[0].acct_num
                 con.end();
 
-                mailOptions.to = req.session.email + "; wei.he@sjsu.edu";
+                mailOptions.to = req.session.user.email + "; wei.he@sjsu.edu";
                 mailOptions.subject = "Congratulations!You opened a new " + newAcct.acct_type + " account!";
                 mailOptions.html = "Dear customer, " + "<br /> <br /> "
                     + "Your new <b>" + newAcct.acct_type + "</b> account number is <b>" + newAcctNum + "</b>. <br/><br /> "
@@ -113,7 +113,7 @@ router.post('/closeacct', function(req, res, next) {
     var closingAcct = {};
     closingAcct.acct_num = parseInt(req.body.acct_num);
     closingAcct.acct_type = req.body.acct_type;
-    closingAcct.email = req.session.email;
+    closingAcct.email = req.session.user.email;
     console.log(JSON.stringify(closingAcct));
 
     var con = mysql.createConnection(database);
